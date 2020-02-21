@@ -1,0 +1,48 @@
+{% extends 'others/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+
+     {% block head_title %} Freelance contributors: how to offer us a contribution {% endblock %}
+     {% block caption %} Supplying content to Telegraph News & Media {% endblock %}     
+     {% block title %} Freelance contributors: how to offer us a contribution {% endblock %}
+     {% block image %} 
+        <figure itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject" data-component="image" class="media-primary media-content ()" data-media-id="" id="img-1">
+            <meta itemprop="representativeOfPage" content="true">
+            <a href="{{request.build_absolute_uri}}#img-1" class="article__img-container js-gallerythumbs" data-link-name="Launch Article Lightbox" data-is-ajax="">
+                <div class="u-responsive-ratio" style="padding-bottom: 60.01%">
+                    <picture>
+                        <img class="maxed responsive-img" itemprop="contentUrl" alt="About us" src="{% static 'img/contribution.jpg' %}">
+                    </picture>
+                </div>
+            </a>
+            <input type="checkbox" id="show-caption" class="mobile-only u-h reveal-caption__checkbox">
+            <label class="mobile-only reveal-caption reveal-caption--img" for="show-caption">
+                <span class="inline-information inline-icon reveal-caption-icon centered-icon">
+                <svg width="6" height="14" viewBox="0 0 6 14" class="reveal-caption-icon__svg centered-icon__svg inline-information__svg inline-icon__svg">
+                <path d="M4.6 12l-.4 1.4c-.7.2-1.9.6-3 .6-.7 0-1.2-.2-1.2-.9 0-.2 0-.3.1-.5l2-6.7H.7l.4-1.5 4.2-.6h.2L3 12h1.6zm-.3-9.2c-.9 0-1.4-.5-1.4-1.3C2.9.5 3.7 0 4.6 0 5.4 0 6 .5 6 1.3c0 1-.8 1.5-1.7 1.5z"></path>
+                </svg>
+                </span>
+            </label>
+        </figure>
+     {% endblock %}
+
+     {% block content %}
+                            
+        <p>If you want to offer us a contribution you should consider which section of the newspapers or websites is most likely to be interested. Contact the commissioning editor for this section - ideally by phone or email - and briefly outline your idea.</p>
+        <p>The commissioning editor may offer to “take a look” at your proposed contribution. This means that you are asked to submit it speculatively and you will be contacted only if your contribution is published.</p>
+        <p>Unless you are already an established contributor, it is most unlikely that the editor will “order” or commission a contribution from you.</p>
+        <p>Please do not send pictures or artwork unless we request them. We do not accept responsibility for loss of unsolicited prints, transparencies, etc.</p>
+        <p>Contributions should be sent to us electronically. Other methods are possible - but only in exceptional circumstances.</p>
+        <p>We publish contributions from all freelances on our standard copyright terms.</p>
+        <p><a href="/contact-us/" data-link-name="in body link" class="u-underline">Click here </a>for details on how to contact different departments at the Telegraph, Observer and the Telegraph website.</p>
+
+        <h2>To submit article to Telegraph Opinion</h2>
+        <p>If you have an idea for a piece you’d like to write for us</p>
+        <p>We welcome your article to Telegraph Opinion – it’s best to send them via email, to <a href="mailto:opinion@telegraph.ng" data-link-name="in body link" class="u-underline"> opinion@telegraph.ng </a></p>
+        <p>We receive lots of article a day, so we can’t get back to every email unfortunately, but we will notify you once they are published.</p> 
+        
+    {% endblock content %}
+                         

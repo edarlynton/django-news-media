@@ -1,0 +1,19 @@
+{% load account %}{% user_display user as user_display %}{% load i18n %}
+{% autoescape off %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+
+Hello,
+
+Thanks for joining The Telegraph. To finish signing up, you just need to confirm that we got your email right.
+
+To confirm this is correct, go to {{ activate_url }}
+{% endblocktrans %}
+{% endautoescape %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+
+This link will expire in seven (7) days, if you did not sign up on {{ site_domain }} using this address, please ignore this email.
+
+Thank you 
+
+{{ site_name }}
+{{ site_domain }}{% endblocktrans %}

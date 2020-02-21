@@ -1,0 +1,21 @@
+{% extends 'others/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+
+    {% block head_title %} Page not found {% endblock %}
+    {% block caption %} 404 Error {% endblock %}     
+    {% block title %} {% endblock %}
+    {% block image %}{% endblock image %}
+
+    {% block content %}
+      <div style="text-align: center;">
+        <h1 class="content__headline " itemprop="headline">Page Not Found</h1>
+          <p><strong>We Are Sorry</strong></p>
+          <h2>404</h2><br>
+          <p><strong><em>Unfortunately, the page you were looking for could not be found. It may be temporarily unavailable, moved or no longer exists</em></strong></p><br>
+          <button class="button button--large button--primary"><a href="/" style="color: #fff;" > Go to home page >> </a></button>
+      </div>
+    {% endblock content %}

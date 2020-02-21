@@ -1,0 +1,94 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+<!doctype html>
+<html id="js-context" class="js-on is-modern id--signed-out svg has-flex has-flex-wrap has-fixed has-sticky should-kern video no-videoautoplay" lang="en" data-page-path="/">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>The Telegraph Nigeria: Breaking news, politics, business, sport, opinion and more.</title>
+  <meta name="description" content="Breaking news and special reports from Nigeria and around the world, Breaking news, politics, business, sport, opinion and more">
+  <meta name="author" content="">
+  <meta name="keywords" content="News, Breaking News, Nigeria News, politics, business, sport, opinion">
+
+  {% block meta %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@telegraphng">
+  <meta name="twitter:creator" content="@telegraphng">
+  <meta name="twitter:title" content="The Telegraph Nigeria: Breaking news, politics, business, sport, opinion and more.">
+  <meta name="twitter:description" content="Breaking news and special reports from Nigeria and around the world">
+  <meta name="twitter:image" content="http://www.telegraph.ng/static/img/thetelegraph.png">
+  <meta name="twitter:image:alt" content="The Telegraph Nigeria news media">
+  <meta name="news_keywords" content="News, Breaking News, Nigeria News, politics, business, sport, opinion">
+  <meta property="og:title" content="The Telegraph Nigeria: Breaking news, politics, business, sport, opinion and more.">
+  {% endblock meta %}
+
+  <!-- <meta property="fb:pages" content="525347664468132"> -->
+
+  <link rel="icon" href="{% static '/img/favicon.ico' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static '/css/font-awesome.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{% static '/css/loggable.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/facia.garnett.css' %}" media="screen">
+  <noscript>
+      <link rel="stylesheet" type="text/css" href="{% static '/css/facia.garnett.css' %}"/>
+  </noscript>
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" type="text/css" href="{% static '/css/blog.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/custom.css' %}" rel="stylesheet">
+  <!-- <link rel="stylesheet" media="print" type="text/css" href="./print.css' %}"> -->
+
+  <style>
+  {% block style %}{% endblock style %}
+  </style>
+  
+  {% block head_extra %}
+
+  {% endblock head_extra %}
+
+
+  {% include 'google_analytics.html' %}
+
+  {% include 'google_adsense.html' %}
+
+  {% include 'header_script.html' %}
+
+</head>
+
+<body>
+    
+    <a class="u-h skip" href="{{request.get_full_path}}#maincontent" data-link-name="skip : main content">Skip to main content</a>
+    <div id="bannerandheader">
+        <div class="top-banner-ad-container js-top-banner">
+            <!-- Advertisement -->
+            {% include 'adverts/ad_home_banner_top.html' %}
+        </div>
+        
+        {% include 'navbar.html' %}
+        <nav>{% include "messages_display.html" %}</nav>
+        <span class="new-header"></span>
+    </div>
+
+
+  <main role="main" id="maincontent">
+    {% block content %}     
+
+
+    {% endblock content %}
+    <span class="new-header"></span>
+  </main>
+    
+    {% include 'footer.html' %}
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static '/js/jquery-3.2.1.slim.min.js' %}" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/static/js/jquery-slim.min.js"><\/script>')</script>
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script> 
+</body>
+</html>

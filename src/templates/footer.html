@@ -1,0 +1,135 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+
+    <footer class="l-footer u-cf" data-link-name="footer" data-component="footer">
+        <div class="footer__primary">
+            <div class="subnav js-expand-subnav">
+                <div class="gs-container">
+                     <ul class="subnav__list js-get-last-child-subnav" data-pillar-title="News">
+                        <li class="subnav__item">
+                            <a class="subnav-link" href="/"> Home </a>
+                        </li>
+                        <li class="subnav__item">
+                            <a class="subnav-link" href="/world/"> World </a>
+                        </li>
+                        <li class="subnav__item">
+                            <a class="subnav-link" href="/nigeria/"> Nigeria </a>
+                        </li>
+                        <li class="subnav__item">
+                            <a class="subnav-link" href="/business/"> Business </a>
+                        </li>
+                        <li class="subnav__item">
+                            <a class="subnav-link" href="/politics/"> Politics </a>
+                        </li>                
+                        <li class="subnav__item">
+                            <a class="subnav-link" href="/opinion/"> Opinion </a>
+                        </li>
+                        <li class="subnav__item">
+                            <a class="subnav-link" href="/sport/"> Sport </a>
+                        </li>
+                        <li class="subnav__item">
+                            <a class="subnav-link" href="/entertainment/"> Entertainment </a>
+                        </li>
+                        <!-- <li class="subnav__item">
+                        <a class="subnav-link" href="/jobs/"> Jobs </a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <a data-link-name="back to top" href="#top">
+                <div class="footer__back-to-top-container">
+                    <div class="gs-container">
+                        <div class="footer__back-to-top">
+                            <span class="back-to-top__text">back to top</span>
+                            <span class="back-to-top__icon-container">
+                                <i class="back-to-top__icon"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="l-footer__secondary js-footer__secondary  gs-container" role="contentinfo">
+            <div class="colophon u-cf">
+                <div class="footer__email-container js-footer__email-container">
+                    <p class=""><big>Sign up to our newsletter</big></p>
+                      <form role='form' method="post" action="/newsletter/">{% csrf_token %}
+                        <div class="input-group">
+                            <input type="email" name="email" maxlength="120" class="form-control" required id="id_email" placeholder="Email Address" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-send"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="colophon__lists-container">
+                    <ul class="colophon__list">
+                        <li class="colophon__item">
+                            <a data-link-name="international : footer : advertise with us" href="/about-us/">
+                            about us</a>
+                        </li>
+                        <li class="colophon__item">
+                            <a data-link-name="international : footer : advertise with us" href="/advertising/">
+                            advertise with us</a>
+                        </li>
+                        <li class="colophon__item">
+                            <a data-link-name="international : footer : work for us" href="/workforus/">
+                            work for us</a>
+                        </li>
+                        <li class="colophon__item">
+                            <a data-link-name="international : footer : contact us" href="/contact-us/">
+                            contact us</a>
+                        </li>
+                        <!-- <li class="colophon__item">
+                            <a data-link-name="complaints" href="/complaints-and-corrections/">
+                            complaints &amp; corrections</a>
+                        </li> -->
+                    </ul>
+                    <ul class="colophon__list">
+                        <li class="colophon__item">
+                            <a data-link-name="terms" href="/terms-of-service/">
+                            terms &amp; conditions</a>
+                        </li>
+                        <li class="colophon__item">
+                            <a data-link-name="privacy" href="/privacy-policy/">
+                            privacy policy</a>
+                        </li>
+                        <li class="colophon__item">
+                            <a data-link-name="cookie" href="/cookies-policy/">
+                            cookie policy</a>
+                        </li>
+                        <li class="colophon__item">
+                            <a data-link-name="international : footer : all contributors" href="/contributors-guide-and-contacts/">
+                            contributors guide</a>
+                        </li>
+                    </ul>
+                    <ul class="colophon__list">
+                        <li class="colophon__item">
+                            <a data-link-name="international : footer : facebook" href="https://www.facebook.com/telegraphng">
+                            <i class="fa fa-facebook"></i> Facebook</a>
+                        </li>
+                        <li class="colophon__item">
+                            <a data-link-name="international : footer : twitter" href="https://twitter.com/telegraphng">
+                            <i class="fa fa-twitter"></i> Twitter</a>
+                        </li>
+                        <li class="colophon__item">
+                            <a data-link-name="international : footer : instagram" href="https://www.instagram.com/telegraph_ng">
+                            <i class="fa fa-instagram"></i> Instagram</a>
+                        </li>
+                        <li class="colophon__item">
+                            <a data-link-name="international : footer : youtube" href="https://www.youtube.com/channel/UC_ujJfRfAfmTIB2VUjlXCIg">
+                            <i class="fa fa-youtube"></i> YouTube</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright-container">
+                <div class="really-serious-copyright text-center">
+                    <span>&copy; 2019 Telegraph Media Group or its affiliated companies. All&nbsp;rights&nbsp;reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>

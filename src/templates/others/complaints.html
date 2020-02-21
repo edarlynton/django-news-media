@@ -1,0 +1,63 @@
+{% extends 'others/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+
+     {% block head_title %} How to make a complaint about Telegraph or Observer content {% endblock %}
+     {% block caption %} Complaint and Corrections {% endblock %}     
+     {% block title %} How to make a complaint about Telegraph or Observer content {% endblock %}
+      {% block image %} 
+        <figure itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject" data-component="image" class="media-primary media-content ()" data-media-id="" id="img-1">
+            <meta itemprop="representativeOfPage" content="true">
+            <a href="{{request.build_absolute_uri}}#img-1" class="article__img-container js-gallerythumbs" data-link-name="Launch Article Lightbox" data-is-ajax="">
+                <div class="u-responsive-ratio" style="padding-bottom: 60.01%">
+                    <picture>
+                        <img class="maxed responsive-img" itemprop="contentUrl" alt="About us" src="{% static 'img/contribution.jpg' %}">
+                    </picture>
+                </div>
+            </a>
+            <input type="checkbox" id="show-caption" class="mobile-only u-h reveal-caption__checkbox">
+            <label class="mobile-only reveal-caption reveal-caption--img" for="show-caption">
+                <span class="inline-information inline-icon reveal-caption-icon centered-icon">
+                <svg width="6" height="14" viewBox="0 0 6 14" class="reveal-caption-icon__svg centered-icon__svg inline-information__svg inline-icon__svg">
+                <path d="M4.6 12l-.4 1.4c-.7.2-1.9.6-3 .6-.7 0-1.2-.2-1.2-.9 0-.2 0-.3.1-.5l2-6.7H.7l.4-1.5 4.2-.6h.2L3 12h1.6zm-.3-9.2c-.9 0-1.4-.5-1.4-1.3C2.9.5 3.7 0 4.6 0 5.4 0 6 .5 6 1.3c0 1-.8 1.5-1.7 1.5z"></path>
+                </svg>
+                </span>
+            </label>
+        </figure>
+     {% endblock %}
+
+     {% block content %}
+
+        <h2><strong>How do I complain?</strong></h2>
+        You can then email the readers’ editor’s office directly on <a href="mailto:readers@telegraph.ng" data-link-name="in body link" class="u-underline">readers@telegraph.ng</a> or write to The readers’ editor, <!-- The Telegraph, 45/61 Moore House Street, Ogui, Enugu, NG --> outlining the following points:</p>
+        <ul>
+            <li>The article you’re complaining about.</li>
+            <li>The date on which it appeared.</li>
+            <li>Whether the article appeared in print or online (and whether through a browser or via one of our mobile apps).</li>
+            <li>The nature of your complaint in no more than 500 words.</li>
+            <li>Which part of the Editorial Code it breaches.</li>
+        </ul>
+        <p>You can also get in touch with the readers’ editor’s office by phone on +234 (0)809 867 7126 between 9am and 5pm Monday to Friday Nigeria time.</p>
+        <p>Please note that in making a complaint, you agree to respond promptly to any request for further information. Our complaints process is free of charge, regardless of outcome.</p>
+        <p>We reserve the right to amend this policy as required. We will publish the current policy on our website. Your complaint will be considered against the published policy on the date of receipt of your complaint.<br></p>
+        <h2><strong>What happens to your complaint?</strong><br></h2>
+        <p>Once we’ve received your complaint<!-- , you should receive an automated reply acknowledging receipt -->. If your complaint is being taken up, we aim to contact you within 72 hours.</p>
+        <p>We aim to give a substantive response to your complaint within 28 working days of receiving all the necessary information to allow us to investigate. However, this may take longer in more complex cases where more information is required, or where journalists are away or unreachable.<br></p>
+        <p>If we receive multiple complaints about the same issue we may not respond to all.</p>
+        <p>If the readers’ editor deems there to have been a breach of the Telegraph Editorial Code, he will suggest an appropriate remedy. Corrections and clarifications will appear on the relevant web page and/or in the newspaper.</p>
+        <p>We will always aim to handle your complaint fairly, courteously and with respect. We expect the same behaviour from complainants and reserve the right to decline to consider complaints that are abusive or gratuitously offensive.</p>
+        <p>If at any stage of your complaint we do not hear back from you within 28 days, we will consider your complaint satisfied and closed.<br></p>
+        <h2><strong>Appeal process</strong></h2>
+        <p>If you are unhappy with our final response to your complaint the readers’ editor will direct you to the Review Panel, which provides an external review of the decision of the readers’ editor.</p>
+        <p>Should your complaint reach this stage, the readers’ editor will send you all the information you need to appeal to the Temporary Review Panel.<br></p>
+        <h2>Corrections/Broken Links</h2>
+        <p>If you’ve spotted a mistake in our copy please let us know so that we can fix it. You will be able to report any mistakes via email to <a href="mailto:contact@telegraph.ng" data-link-name="in body link" class="u-underline">contact@telegraph.ng</a>.</p>
+        <h2><strong><strong><strong><strong>Useful links</strong></strong></strong></strong></h2>
+        <p>See our <a href="/contact-us/" data-link-name="in body link" class="u-underline">information site</a> for other contact information, terms of service, help for contributors and more.</p>
+
+                        
+    {% endblock content %}
+                         

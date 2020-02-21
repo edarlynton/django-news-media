@@ -1,0 +1,38 @@
+{% extends 'others/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+ 
+
+     {% block head_title %} Welcome to the Telegraph {% endblock %}
+     {% block caption %} About {% endblock %}     
+     {% block title %} Welcome to the Telegraph {% endblock %}
+      {% block image %} 
+        <figure itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject" data-component="image" class="media-primary media-content ()" data-media-id="" id="img-1">
+            <meta itemprop="representativeOfPage" content="true">
+            <a href="{{request.build_absolute_uri}}#img-1" class="article__img-container js-gallerythumbs" data-link-name="Launch Article Lightbox" data-is-ajax="">
+                <div class="u-responsive-ratio" style="padding-bottom: 60.01%">
+                    <picture>
+                        <img class="maxed responsive-img" itemprop="contentUrl" alt="About us" src="{% static 'img/contribution.jpg' %}">
+                    </picture>
+                </div>
+            </a>
+            <input type="checkbox" id="show-caption" class="mobile-only u-h reveal-caption__checkbox">
+            <label class="mobile-only reveal-caption reveal-caption--img" for="show-caption">
+                <span class="inline-information inline-icon reveal-caption-icon centered-icon">
+                <svg width="6" height="14" viewBox="0 0 6 14" class="reveal-caption-icon__svg centered-icon__svg inline-information__svg inline-icon__svg">
+                <path d="M4.6 12l-.4 1.4c-.7.2-1.9.6-3 .6-.7 0-1.2-.2-1.2-.9 0-.2 0-.3.1-.5l2-6.7H.7l.4-1.5 4.2-.6h.2L3 12h1.6zm-.3-9.2c-.9 0-1.4-.5-1.4-1.3C2.9.5 3.7 0 4.6 0 5.4 0 6 .5 6 1.3c0 1-.8 1.5-1.7 1.5z"></path>
+                </svg>
+                </span>
+            </label>
+        </figure>
+     {% endblock %}
+
+     {% block content %}
+        <h2>Welcome to The Telegraph</h2>
+
+        <p>The Telegraph is a leading, multimedia news brand that has been synonymous with quality, authority and credibility for the purpose of presenting balanced coverage of events, and of promoting the best interests of Nigeria. It owes allegiance to no political party, ethnic community, religious or other interest group. Its primary commitment is to the integrity and sovereignty of the Federation of Nigeria, and beyond that to the unity and sovereignty of Africa.</p>
+
+        <p>The Telegraph is renowned for the analysis, perspective, opinion and insight that our journalism provides to a diverse and discerning audience. We will at all times uphold the need for justice, probity in public life, equal access to the nation's resources, and equal protection under the laws of Nigeria for all citizens.</p>
+    {% endblock content %}

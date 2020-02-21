@@ -1,0 +1,119 @@
+{% extends 'others/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+{% block head_title %} Privacy Policy {% endblock %}
+     {% block caption %} Policy {% endblock %}     
+     {% block title %} Privacy Policy {% endblock %}
+     {% block image %} 
+        <figure itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject" data-component="image" class="media-primary media-content ()" data-media-id="" id="img-1">
+            <meta itemprop="representativeOfPage" content="true">
+            <a href="{{request.build_absolute_uri}}#img-1" class="article__img-container js-gallerythumbs" data-link-name="Launch Article Lightbox" data-is-ajax="">
+                <div class="u-responsive-ratio" style="padding-bottom: 60.01%">
+                    <picture>
+                        <img class="maxed responsive-img" itemprop="contentUrl" alt="" src="{% static 'img/tgh_w.png' %}">
+                    </picture>
+                </div>
+            </a>
+            <input type="checkbox" id="show-caption" class="mobile-only u-h reveal-caption__checkbox">
+            <label class="mobile-only reveal-caption reveal-caption--img" for="show-caption">
+                <span class="inline-information inline-icon reveal-caption-icon centered-icon">
+                <svg width="6" height="14" viewBox="0 0 6 14" class="reveal-caption-icon__svg centered-icon__svg inline-information__svg inline-icon__svg">
+                <path d="M4.6 12l-.4 1.4c-.7.2-1.9.6-3 .6-.7 0-1.2-.2-1.2-.9 0-.2 0-.3.1-.5l2-6.7H.7l.4-1.5 4.2-.6h.2L3 12h1.6zm-.3-9.2c-.9 0-1.4-.5-1.4-1.3C2.9.5 3.7 0 4.6 0 5.4 0 6 .5 6 1.3c0 1-.8 1.5-1.7 1.5z"></path>
+                </svg>
+                </span>
+            </label>
+        </figure>
+     {% endblock %}
+
+     {% block content %}
+          <p>The Telegraph may collect information from our users at several different points on the site. The Telegraph is the sole owner of the information collected on telegraph.ng</p>
+
+          <h2>Comments and Posts</h2>
+
+          <p>The Telegraph users can choose to write comments or posts on the site. To leave a comment, users must submit information including a valid email address. The Telegraph uses this information to screen out users who leave comments prohibited by our terms and conditions of use, and will not pass this information to any other organization.</p>
+
+          <h2>Newsletters</h2>
+
+          <p>The Telegraph offers email newsletters. To sign up to receive regular emails, users must submit information including a valid email address. This information will be used in aggregate form to assess general user interest in various internal and third party products and services, and your personal and contact information will not be passed to any other organization. Users who choose to sign up for a mailing list will receive regular emails, including new articles added to the site.</p>
+
+          <h2>Log Files</h2>
+
+          <p>Like most standard Web site servers we use log files. These include internet protocol (IP) addresses, browser type, internet service provider (ISP), referring/exit pages, platform type, date/time stamp, and number of clicks.  We use this information to analyze trends, administer the site, track user movement in the aggregate, and gather broad demographic information for aggregate use.  IP addresses, etc. are not linked to personally identifiable information. We may use a tracking utility that uses log files to analyze user movement.</p>
+
+          <h2>Legal Disclaimer</h2>
+
+          <p>Though we make every effort to preserve user privacy, The Telegraph may need to disclose personal information when required by law wherein we have a good-faith belief that such action is necessary to comply with a current judicial proceeding, a court order or legal process.</p>
+
+          <h2>Business Transitions</h2>
+
+          <p>In the event The Telegraph goes through a business transition, such as a merger, acquisition by another company, or sale of a portion of its assets, users’ personal information will, in most instances, be part of the assets transferred.</p>
+
+          <h2>Links</h2>
+
+          <p>The Telegraph contains links to other sites. Please be aware that The Telegraph is not responsible for the privacy practices or content of such other sites. We encourage our users to be aware when they leave our site and to read the privacy statements of each and every Web site that collects personally identifiable information. This privacy statement applies solely to information collected by The Telegraph.</p>
+
+
+
+          <h2>How long we keep your personal data</h2>
+          <p>We keep your personal data for only as long as we need to. How long we need you personal data depends on what we are using it for, as set out in this privacy policy. For example, we may need to use it to answer your queries about a product or service and as a result may keep personal data while you are still using our product or services. We may also need to keep your personal data for accounting purposes, for example, where you have bought a subscription. If we no longer need your data, we will delete it or make it anonymous by removing all details that identify you. If we have asked for your permission to process your personal data and we have no other lawful grounds to continue with that processing, and you withdraw your permission, we will delete your personal data. However, when you unsubscribe from marketing communications, we will keep your email address to ensure that we do not send you any marketing in future.</p>
+
+          <h2>How we may contact you</h2><br>
+          <i><b>Service communications</b></i>
+
+          <p>From time to time we may send you service emails, for example, telling you your subscription is coming to an end or thanking you when you contribute or place an order with us.</p>
+
+          <i><b>Marketing communications and editorial newsletters</b></i>
+
+          <p>If we have your permission, we may send you materials we think may interest you, such as new Telegraph offers and updates. Depending on your marketing preferences, this may be by email, phone, SMS or post.</p>
+
+          <p>We offer a range of editorial newsletters. You can manage your subscription to these emails through your profile page when you are signed in to your Telegraph account.</p>
+
+          <p>You can decide not to receive these emails at any time and will be able to “unsubscribe” directly by clicking a link in the email or through your email preferences in the tab “Emails and marketing” when you are signed in to your Telegraph account.</p>
+
+          <i><b>Market research</b></i>
+
+          <p>Sometimes we may contact you for market research purposes, for example about a survey. You can opt out from being contacted in this way by signing into your Telegraph account and going to the tab “Emails and marketing”.</p>
+
+          <i><b>Responding to your queries or complaints</b></i>
+
+          <p>If you have raised a query or a complaint with us, we may contact you to answer your query or to resolve your complaint.</p>
+
+          <i><b>Cookies and similar technology</b></i>
+          <p>When you visit our sites or when you use our apps, we may collect personal data from you automatically using cookies or similar technology. A cookie is a small file that can be placed on your device that allows us to recognise and remember you.<p>
+
+          <p>This privacy policy includes our <a href="{% url 'cookies' %}" data-link-name="in body link" class="u-underline" target="_blank">cookie policy</a>, where you can find details on our use of cookies.</p>
+
+          <h2>Online advertising</h2>
+          <i><b>Advertising on our sites that is based on cookies and similar technology</b></i>
+
+          <p>We use personalised online advertising on our sites. This allows us to deliver more relevant advertising to people who visit telegraph.ng. It works by showing you adverts that are based on your browsing patterns and the way you have interacted with our sites and apps. It then shows you adverts which we believe may interest you.</p>
+
+          <p>Since the publication of the very first edition of the Telegraph, our journalism has been funded in part by advertising. Our editorial content is not influenced by the advertising we display and our journalists are free to, and often do, challenge the activities of companies and organisations that advertise and sponsor content that appears in Telegraph sites and publications.</p>
+
+          <p>When you browse our sites or use our apps, some of the cookies and similar technology we place on your device are advertising cookies, so we can understand what sort of pages you are interested in. We can then display advertising on your browser based on these interests. For instance if you have been reading a lot of real estate articles, we may show you more advertisements for real estate.</p>
+
+          <p>We do not collect or use information such as your name, email address, postal address or phone number for personalised online advertising.</p>
+
+          <p>We may also share online data collected through cookies and similar technology with our advertising partners. This means that when you are on another website, you may be shown advertising based on your browsing patterns on telegraph.ng. We may also show you advertising on telegraph.ng website based on your browsing patterns on other sites that we have obtained from our advertising partners.</p>
+
+          <p>Online retargeting is another form of online advertising that allows us and some of our advertising partners to show you advertising based on your browsing patterns and interactions with a site away from our sites.</p>
+
+          <p>For example, if you have visited the website of an online clothes shop, you may start seeing adverts from that same shopping site displaying special offers or showing you the products you were browsing. This allows companies to advertise to you if you leave their website without making a purchase.</p>
+
+          <i><b>Advertising that we place on our site or on other sites</b></i>
+          <p>We also use personalised online advertising to promote our own products and services. This means that you may see advertising for our products and services on our sites (and our other platforms, such as Telegraph Jobs) and when you are on other, third party websites, including social media platforms.</p>
+
+          <p>To find out more, read <a href="https://www.google.com/policies/privacy/partners/" data-link-name="in body link" class="u-underline" target="_blank"> How Google uses information from sites or apps that use our services</a>.
+
+          <h2>Notification of Changes</h2>
+
+          <p>Whenever The Telegraph changes its privacy policy, we will post those changes to this privacy statement, and other places we deem appropriate.</p>
+
+          <h2>Contact Information</h2>
+
+          <p>If you have any questions or suggestions regarding our privacy policy, please end an email to <a href="mailto:contact@telegraph.ng" data-link-name="in body link" class="u-underline">contact@telegraph.ng</a>.</p>
+                            
+    {% endblock content %}

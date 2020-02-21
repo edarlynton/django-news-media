@@ -1,0 +1,65 @@
+body {
+  /*padding-bottom: 20px;*/
+  line-height: 0.5;
+}
+
+.navbar {
+  margin-bottom: 20px;
+      /*border-bottom: 0.0625rem solid #bbcdd3;*/
+}
+.navbar-light .navbar-toggler {
+    color: rgba(0,0,0,.5);
+    border-color: rgba(0,0,0,0);
+}
+
+
+
+
+
+.fc-item__kicker::after {
+    content: ':';
+    margin-left: 0rem !important;
+}
+
+.fc-today {
+    margin: 0.1rem 0rem;
+}
+
+
+*, ::after, ::before {
+    /* box-sizing: border-box; */
+}
+
+.fc-item--type-interview.fc-item--pillar-news .fc-item__headline {
+     color: #000; 
+}
+/*.fc-item--pillar-news .inline-icon {
+    fill: #000;
+}*/
+.fc-item--pillar-news.fc-item--type-feature .fc-item__headline {
+    color: #000;
+}
+
+.fc-item--type-comment.fc-item--pillar-news .inline-icon {
+    fill: #c70000;
+}
+
+.fc-item--type-comment.fc-item--pillar-news .fc-item__byline {
+    color: #c70000;
+}
+
+.fc-item--type-comment.fc-item--pillar-news.fc-item--type-comment .fc-item__avatar {
+    background-color: #c70000;
+}
+
+/*changed to pillar-news
+pillar-lifestyle
+pillar-opinion
+pillar-arts*/
+
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+    /*color: #c70000;*/
+    color: #000;
+    text-decoration: underline;
+}

@@ -1,0 +1,21 @@
+{% extends 'others/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+
+    {% block head_title %} Bad Request {% endblock %}
+    {% block caption %} 400 Error {% endblock %}
+    {% block title %} {% endblock %}
+    {% block image %}{% endblock image %}
+
+    {% block content %}
+      <div style="text-align: center;">
+        <h1 class="content__headline " itemprop="headline">Bad Request</h1>
+          <p><strong>We Are Sorry</strong></p>
+          <h2>400</h2><br>
+          <p><strong><em>Bad Request</em></strong></p><br>
+          <button class="button button--large button--primary"><a href="/" style="color: #fff;" > Go to home page >> </a></button>
+      </div>
+    {% endblock content %}

@@ -1,0 +1,46 @@
+{% load staticfiles %}
+
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+              {% if not request.user.is_authenticated %}
+                  <blockquote><small><i>Please kindly <a href='/accounts/login/' class="text-primary">login</a> <!-- or <a href='/accounts/signup/' class="text-primary">signup</a> --> to post or view comments.</i></small></blockquote>
+
+                {% else %}
+
+                  {% for comment in comments %}
+                  <blockquote>
+                    <span><i class="fa fa-user"></i> {% if comment.user.get_full_name %}<a>{{ comment.user.get_full_name }}</a>{% else %}<a>{{ comment.user.get_username }}</a>{% endif %}:</span>
+                    {{ comment.content }}<br>
+                    <small><footer class="text-muted"><i class="fa fa-clock-o"></i> {{ comment.timestamp|timesince }}</footer> </small> <!-- | {% if comment.children.count > 0 %}{{ comment.children.count }} Comment{% if comment.children.count > 1 %}s{% endif %} | {% endif %} <a class='comment-reply-btn' href='#'>Reply</a>              
+                    
+                  
+                    <div class='comment-reply'>
+                          {% for child_comment in comment.children %}
+                            <blockquote>
+                            <p>{{ child_comment.content }}</p>
+                            <small><footer>via {{ child_comment.user }} | {{ child_comment.timestamp|timesince }} ago</footer></small>
+                            </blockquote>
+                         {% endfor %}
+
+                        <form method="POST" action="."> {% csrf_token %}
+                            {{ comment_form|crispy }}
+                            <input type='hidden' name='parent_id' value='{{ comment.id }}'>
+                            <input type='submit' value='Reply' class='btn btn-default'>
+                        </form>
+                    </div> -->
+
+                  </blockquote>
+                  <hr/>
+                  {% endfor %}                 
+                    <div class="row">
+                      <div class="col-lg-8 col-md-8 col-sm-8">
+                          <form method="POST" action="."> {% csrf_token %}
+                              {{ comment_form|crispy }}
+                              {% include "messages_display.html" %}
+                              <input type='submit' value='Post comment' class='btn btn-primary'>
+                          </form>                        
+                      </div>
+                    </div>
+
+                  {% endif %}

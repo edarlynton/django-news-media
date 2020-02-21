@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+
+{% block content %}
+
+      <!-- headlines -->
+      {% include 'politics.html' %}
+          
+
+
+      <!-- Mobile Advertisement -->
+      {% include 'adverts/ad_home_mpu_mobile.html' %}
+      <br><br>
+
+
+
+      <!-- news -->        
+      {% include 'news.html' %}
+
+
+
+      <!-- opinion -->
+      {% include 'opinion.html' %}
+          
+
+
+      <!-- Mobile Advertisement -->
+      {% include 'adverts/ad_home_mpu_mobile2.html' %}
+      <br><br>       
+
+
+      <!-- sponsored -->
+      {% include 'sponsored.html' %}
+      <br><br><br>
+
+
+      <!-- sportlight -->
+      {% include 'spotlight.html' %}
+    
+
+    <!-- Advertisement -->
+    <div class="fc-slice-wrapper">
+      <ul class="u-unstyled l-row  l-row--cols-1 fc-slice fc-slice--hl3-mpu">
+          <li class="fc-slice__item l-row__item l-row__item--span-1 fc-slice__item--mpu-candidate">
+              {% include 'adverts/ad_home_banner_inline.html' %}
+          </li>
+      </ul>
+    </div>
+          
+
+
+      <!-- Mobile Advertisement -->
+      {% include 'adverts/ad_home_mpu_mobile3.html' %}
+      <br><br>
+
+
+      <!-- the-defendesr -->
+      {% include 'defender.html' %}
+      <br><br>
+
+
+      <!-- the-cartoon -->
+          
+
+
+      <!-- Mobile Advertisement -->
+      {% include 'adverts/ad_home_mpu_mobile4.html' %}
+      <br><br>
+
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+

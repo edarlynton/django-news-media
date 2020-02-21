@@ -1,0 +1,28 @@
+{% extends "account/base.html" %}
+{% load crispy_forms_tags %}
+
+{% load i18n %}
+
+{% block head_title %} {{ block.super }} - {% trans "Sign Up Closed" %}{% endblock %}
+
+{% block content %}
+  <section id="contentSection">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-sm-offset-3">
+        <div class="left_content">
+          <div class="error_page"><br><br>
+
+				
+			<h3>{% trans "Sign Up Closed" %}</h3>
+
+			<p>{% trans "We are sorry, but the sign up is currently closed." %}</p>
+
+
+              <br><br><br><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+

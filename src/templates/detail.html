@@ -1,0 +1,708 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html id="js-context" class="js-on is-modern id--signed-out svg has-flex has-flex-wrap has-fixed has-sticky should-kern" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{{ instance.title}} | {{instance.category}} | The Telegraph Nigeria</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    
+    <meta name="description" content="Breaking news and special reports from Nigeria and around the world, Breaking news, politics, business, sport, opinion and more">
+    <meta name="author" content="">
+    <meta name="keywords" content="News, Breaking News, Nigeria News, politics, business, sport, opinion">
+
+    <meta property="article:publisher" content="https://www.facebook.com/telegraphng">
+    <meta property="article:section" content="{{instance.category}} news">
+    <!-- <meta property="article:tag" content="{% for tag in instance.tags %} {{tag}}, {% endfor %}"> -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="the Telegraph">
+    <meta property="og:title" content="{% if instance.caption %} {{instance.caption}}: {% endif %} {{instance.title}}">
+    {% if instance.briefing %}
+    <meta name="og:description" content="{{instance.briefing|truncatechars:130}}">
+    {% else %}
+    <meta name="og:description" content="{{instance.content|truncatechars:130}}">
+    {% endif %}
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@telegraphng">
+    <meta name="twitter:creator" content="@telegraphng">
+    <meta name="twitter:image" content="http://www.telegraph.ng{{ instance.get_image_url }}">
+    <meta name="twitter:image:alt" content="{{instance.image_caption}}">
+    {% if instance.briefing %}
+    <meta name="twitter:description" content="{{instance.briefing|truncatechars:130}}">
+    {% else %}
+    <meta name="twitter:description" content="{{instance.content|truncatechars:130}}">
+    {% endif %}
+
+    <style class="js-loggable">
+        .svg .i,
+        .svg .caption:before,
+        .svg figcaption:before,
+        .svg blockquote.quoted:before {
+            background-image: none;
+        }
+    </style>
+
+    <link rel="icon" href="{% static '/img/favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/content.garnett.css' %}" media="screen">
+    <noscript>
+        <link rel="stylesheet" type="text/css" href="{% static '/css/content.garnett.css' %}"/>
+    </noscript>
+    <link rel="stylesheet" media="print" type="text/css" href="{% static '/css/print.css' %}">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="{% static '/css/blog.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/js-loggable.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/custom.css' %}">
+
+    <style>
+    {% block style %}{% endblock style %}
+    </style>  
+    {% block head_extra %}    {% endblock head_extra %}
+
+    {% include 'google_analytics.html' %}
+
+    {% include 'google_adsense.html' %}
+
+    {% include 'header_detail_script.html' %}
+    
+</head>
+<body id="top" class="" itemscope="" itemtype="http://schema.org/WebPage">
+    
+    <a class="u-h skip" href="{{request.get_full_path}}#maincontent" data-link-name="skip : main content">Skip to main content</a>
+    <div id="bannerandheader">
+
+        <div class="top-banner-ad-container js-top-banner">
+            <!-- Advertisement -->
+            {% include 'adverts/ad_inside_banner_top.html' %}
+        </div>        
+            {% include 'navbar.html' %}
+        <nav>
+            {% include "messages_display.html" %}
+        </nav>
+        <span class="new-header"></span>
+    </div>
+
+    <div id="maincontent" tabindex="0"></div>
+    <div class="js-breaking-news-placeholder breaking-news breaking-news--hidden breaking-news--fade-in" data-component="breaking-news">
+    </div>
+    <div class="l-side-margins">
+        <article id="article" data-test-id="article-root" class="content content--article content--pillar-sport content--type-article section-us-news tonal tonal--tone-news" itemscope="" itemtype="http://schema.org/NewsArticle" role="main">
+            <meta itemprop="mainEntityOfPage" content="{{ request.build_absolute_uri }}">
+            <div itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+                <meta itemprop="name" content="The Telegraph">
+                <div itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject">
+                    <meta itemprop="url" content="{{instance.get_image_url}}">
+                    <meta itemprop="width" content="{{instance.width_field}}">
+                    <meta itemprop="height" content="{{instance.height_field}}">
+                </div>
+                <link itemprop="sameAs" href="https://www.telegraph.ng/">
+            </div>
+            <div class="content__main tonal__main tonal__main--tone-news">
+                <div class="gs-container">
+                    <div class="content__main-column content__main-column--article js-content-main-column">
+                        <header class="content__head content__head--article tonal__head tonal__head--tone-news">
+                            <div class="matchreport">
+                                <div class="js-score"></div>
+                                <div class="js-sport-tabs football-tabs"></div>
+                            </div>
+                            <div class="content__labels content__labels--not-immersive">
+                                <div class="content__section-label content__label">
+                                    <a class="content__label__link" href="{{request.build_absolute_uri}}">
+                                        <span class="label__link-wrapper"><small>{{instance.category}}</small></span>
+                                    </a><br>
+                                    <a class="content__label__link hide-until-tablet" href="{{request.build_absolute_uri}}">
+                                        {% if instance.caption %}<span class="label__link-wrapper"> {{instance.caption}} </span>{% endif %}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="content__headline-standfirst-wrapper">
+                                <div class="content__header tonal__header">
+                                    <div class="u-cf">
+                                        <h1 class="content__headline" >
+                                            {% if instance.caption %} <span class="fc-item__kicker hide-from-tablet">{{instance.caption}}</span> {% endif %} {{instance.title}} {% if instance.author %} <small class=""><i> - {{instance.author}}</i></small> {% endif %}
+                                        </h1>
+                                    </div>
+                                </div>
+                                {%if instance.briefing%}
+                                <div class="tonal__standfirst u-cf">
+                                    <div class="content__standfirst" >
+                                        <meta content="{{instance.briefing}}">
+                                        <p class="text-muted">{{instance.briefing}}</p>
+                                    </div>
+                                </div>
+                                {%endif%}
+                            </div>
+                            <div class="content__meta-container js-content-meta js-football-meta u-cf content__meta-container--twitter content__meta-container--email">
+                                <div class="meta__contact-wrap">
+                                    <p class="byline">
+                                        <span >
+                                            <!-- <a rel="author" class="tone-colour" itemprop="sameAs" data-link-name="auto tag link" href="https://www.telegraph.ng/profile/{{instance.user.get_username}}"> -->
+                                                <span itemprop="name">{% if instance.user.get_full_name %} {{instance.user.get_full_name}} {% else %} {{instance.user.username}} {% endif %}</span>
+                                            <!-- </a> -->
+                                        </span>
+                                    </p>
+                                   <!--  <div class="meta__twitter meta__contact-method">
+                                        <a href="https://twitter.com/{{instance.user.get_username}}" data-link-name="twitter-handle" data-component="meta-twitter-handle">
+                                            <span class="inline-twitter-bird inline-icon i-left">
+                                                <svg width="14" height="14" viewBox="-298 390 14 14" class="i-left__svg inline-twitter-bird__svg inline-icon__svg">
+                                                <path d="M-284 392.6c-.5.2-1.1.4-1.6.5.6-.4 1-.9 1.3-1.6-.6.3-1.2.6-1.8.7-.5-.6-1.3-.9-2.1-.9-1.6 0-2.9 1.3-2.9 2.9 0 .2 0 .4.1.7-2.4-.1-4.5-1.3-5.9-3-.2.4-.4.9-.4 1.4 0 1 .5 1.9 1.3 2.4-.5 0-.9-.1-1.3-.4 0 1.4 1 2.6 2.3 2.8-.2.1-.5.1-.8.1-.2 0-.4 0-.5-.1.4 1.1 1.4 2 2.7 2-1 .8-2.2 1.2-3.6 1.2h-.7c1.3.8 2.8 1.3 4.4 1.3 5.3 0 8.2-4.4 8.2-8.2v-.4c.3-.2.8-.8 1.3-1.4"></path>
+                                                </svg>
+                                            </span>
+                                            @{{instance.user.get_username}}
+                                        </a>
+                                    </div> -->
+                                    <!-- <div class="meta__email meta__contact-method">
+                                        <a href="mailto:{{instance.user.email}}" data-link-name="email-address" data-component="meta-email-address">
+                                            <span class="inline-mail inline-icon i-left">
+                                                <svg width="14" height="10" viewBox="4 3 14 10" class="i-left__svg inline-mail__svg inline-icon__svg">
+                                                <path d="M16.728 11.75H5.272V4.875l5.09 4.375h1.274l5.09-4.375v6.875zm-1.274-7.5L11 8 6.546 4.25h8.908zM16.728 3H5.272L4 4.25v7.5L5.272 13h11.455L18 11.75v-7.5L16.728 3z"></path>
+                                                </svg>
+                                            </span>
+                                            Email
+                                        </a>
+                                    </div> -->
+                                    <p class="content__dateline" aria-hidden="true">
+                                        <time itemprop="datePublished" datetime="{{instance.publish}}" class="content__dateline-wpd js-wpd content__dateline-wpd--modified">
+                                            {{instance.publish|date}}, <span class="content__dateline-time">{{instance.publish|time}}&nbsp;WAT</span>
+                                        </time>
+                                        <time datetime="{{instance.updated}}" class="content__dateline-lm js-lm u-h" itemprop="dateModified">
+                                            Last modified on {{instance.updated|date}}, <span class="content__dateline-time">{{instance.updated|time}},&nbsp;WAT</span>
+                                        </time>
+                                    </p>
+                                    <meta itemprop="dateModified" content="{{instance.updated}}">
+                                </div>
+                                <div class="meta__extras ">
+                                    <div class="meta__social" data-component="share">
+                                        <ul class="social social--top js-social--top u-unstyled u-cf" data-component="social">
+                                            <li class="social__item social__item--facebook " data-link-name="facebook">
+                                                <a class="social__action js-social__action--top social-icon-wrapper" data-link-name="social top" href="https://www.facebook.com/dialog/share?&amp;href={{ request.build_absolute_uri }}" target="_blank" title="Facebook">
+                                                <span class="inline-icon__fallback button">Share on Facebook</span>
+                                                <span class="inline-share-facebook inline-icon rounded-icon centered-icon social-icon social-icon--facebook">
+                                                <svg width="32" height="32" viewBox="-2 -2 32 32" class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--facebook__svg inline-share-facebook__svg inline-icon__svg">
+                                                <path d="M17.9 14h-3v8H12v-8h-2v-2.9h2V8.7C12 6.8 13.1 5 16 5c1.2 0 2 .1 2 .1v3h-1.8c-1 0-1.2.5-1.2 1.3v1.8h3l-.1 2.8z"></path>
+                                                </svg>
+                                                </span>
+                                                </a>
+                                            </li>
+                                            <li class="social__item social__item--twitter " data-link-name="twitter">
+                                                <a class="social__action js-social__action--top social-icon-wrapper" data-link-name="social top" href="https://twitter.com/intent/tweet?text={{ share_string|truncatechars:100 }}&amp;url={{ request.build_absolute_uri }}" target="_blank" title="Twitter">
+                                                <span class="inline-icon__fallback button">Share on Twitter</span>
+                                                <span class="inline-share-twitter inline-icon rounded-icon centered-icon social-icon social-icon--twitter">
+                                                <svg width="32" height="32" viewBox="-2 -2 32 32" class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--twitter__svg inline-share-twitter__svg inline-icon__svg">
+                                                <path d="M21.3 10.5v.5c0 4.7-3.5 10.1-9.9 10.1-2 0-3.8-.6-5.3-1.6.3 0 .6.1.8.1 1.6 0 3.1-.6 4.3-1.5-1.5 0-2.8-1-3.3-2.4.2 0 .4.1.7.1l.9-.1c-1.6-.3-2.8-1.8-2.8-3.5.5.3 1 .4 1.6.4-.9-.6-1.6-1.7-1.6-2.9 0-.6.2-1.3.5-1.8 1.7 2.1 4.3 3.6 7.2 3.7-.1-.3-.1-.5-.1-.8 0-2 1.6-3.5 3.5-3.5 1 0 1.9.4 2.5 1.1.8-.1 1.5-.4 2.2-.8-.3.8-.8 1.5-1.5 1.9.7-.1 1.4-.3 2-.5-.4.4-1 1-1.7 1.5z"></path>
+                                                </svg>
+                                                </span>
+                                                </a>
+                                            </li>
+                                            <li class="social__item social__item--email " data-link-name="email">
+                                                <a class="social__action js-social__action--top social-icon-wrapper" data-link-name="social top" href="mailto:?subject={{ instance.title }}&amp;body={{ share_string }}" target="_blank" title="Email">
+                                                <span class="inline-icon__fallback button">Share via Email</span>
+                                                <span class="inline-share-email inline-icon rounded-icon centered-icon social-icon social-icon--email">
+                                                <svg width="32" height="32" viewBox="0 0 32 32" class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--email__svg inline-share-email__svg inline-icon__svg">
+                                                <path d="M23.363 20.875H8.637v-8.938l6.545 5.687h1.637l6.544-5.687v8.938zm-1.635-9.75L16 16l-5.728-4.875h11.456zM23.363 9.5H8.637L7 11.125v9.75L8.637 22.5h14.727L25 20.875v-9.75L23.363 9.5z"></path>
+                                                </svg>
+                                                </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="meta__numbers">
+                                        <div class="meta__number js-sharecount" title="Facebook: {{instance.id}}">
+                                            <h3 class="sharecount__heading"><span class="inline-share inline-icon"><svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M10.073 8.4c-.475 0-.906.19-1.225.497l-5.308-2.676.015-.221-.015-.221 5.308-2.676c.319.308.75.497 1.225.497.982 0 1.778-.806 1.778-1.8s-.796-1.8-1.778-1.8-1.778.806-1.778 1.8l.016.233-5.299 2.675c-.32-.313-.755-.507-1.236-.507-.982 0-1.778.806-1.778 1.8s.796 1.8 1.778 1.8c.48 0 .915-.194 1.236-.507l5.299 2.675-.016.233c0 .994.796 1.8 1.778 1.8s1.778-.806 1.778-1.8-.796-1.8-1.778-1.8zm0-7.68c.588 0 1.067.484 1.067 1.08 0 .596-.479 1.08-1.067 1.08s-1.067-.484-1.067-1.08c0-.596.479-1.08 1.067-1.08zm0 10.56c-.588 0-1.067-.484-1.067-1.08 0-.596.479-1.08 1.067-1.08s1.067.484 1.067 1.08c0 .596-.479 1.08-1.067 1.08z"></path></svg></span><span class="sharecount__text u-h">Shares</span></h3>
+                                            <div class="sharecount__value sharecount__value--full">{{instance.id}}</div>
+                                            <div class="sharecount__value sharecount__value--short">{{instance.id}}</div>
+                                        </div>
+                                        <div class="u-h meta__number" data-discussion-id="" data-commentcount-format="content" data-discussion-closed="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <figure itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject" data-component="image" class="media-primary media-content ()" data-media-id="" id="img-1">
+                                <!-- <meta itemprop="representativeOfPage" content="true">
+                                <meta itemprop="url" content="{{instance.get_image_url}}">
+                                <meta itemprop="width" content="{{instance.width_field}}">
+                                <meta itemprop="height" content="{{instance.height_field}}"> -->
+                                <a href="{{request.build_absolute_uri}}#img-1" class="article__img-container js-gallerythumbs" data-link-name="Launch Article Lightbox" data-is-ajax="">
+                                    <div class="u-responsive-ratio" style="padding-bottom: 60.01%">
+                                        <picture>
+                                            <img class="maxed responsive-img" itemprop="contentUrl" src="{{instance.get_image_url}}" alt="" title="">
+                                        </picture>
+                                    </div>
+                                </a>
+                                <input type="checkbox" id="show-caption" class="mobile-only u-h reveal-caption__checkbox">
+                                <label class="mobile-only reveal-caption reveal-caption--img" for="show-caption">
+                                    <span class="inline-information inline-icon reveal-caption-icon centered-icon">
+                                    <svg width="6" height="14" viewBox="0 0 6 14" class="reveal-caption-icon__svg centered-icon__svg inline-information__svg inline-icon__svg">
+                                    <path d="M4.6 12l-.4 1.4c-.7.2-1.9.6-3 .6-.7 0-1.2-.2-1.2-.9 0-.2 0-.3.1-.5l2-6.7H.7l.4-1.5 4.2-.6h.2L3 12h1.6zm-.3-9.2c-.9 0-1.4-.5-1.4-1.3C2.9.5 3.7 0 4.6 0 5.4 0 6 .5 6 1.3c0 1-.8 1.5-1.7 1.5z"></path>
+                                    </svg>
+                                    </span>
+                                </label>
+                                <figcaption class="caption caption--main caption--img" itemprop="description">
+                                    {% if instance.image_caption %} 
+                                        <span class="inline-triangle inline-icon hide-until-tablet">
+                                        <svg width="11" height="10" viewBox="0 0 11 10" class="hide-until-tablet__svg inline-triangle__svg inline-icon__svg">
+                                        <path fill-rule="evenodd" d="M5.5 0L11 10H0z"></path>
+                                        </svg>
+                                        </span>
+                                        {{instance.image_caption}} 
+                                    {% endif %}
+                                </figcaption>
+                            </figure>
+                        </header>
+                        <div class="content__article-body from-content-api js-article__body" itemprop="articleBody" data-test-id="article-review-body">
+                            <p>{{ instance.get_markdown }}</p>
+
+                            {% for obj in instance.get_random_object|slice:'0:1' %}
+                            <aside class="element element-rich-link element--thumbnail element-rich-link--upgraded" data-component="rich-link" data-link-name="rich-link-2 | 2">
+                                <div class="rich-link tone-news--item rich-link--pillar-sport">
+                                    <div class="rich-link__container">
+                                        <div class="rich-link__image-container u-responsive-ratio">
+                                            <img src="{{obj.get_image_url}}" itemprop="contentURL">
+                                        </div>
+                                        <div class="rich-link__header">
+                                            <h1 class="rich-link__title">                                                
+                                                <a class="rich-link__link">
+                                                    {{obj.title}}
+                                                </a>
+                                            </h1>
+                                        </div>
+                                        <div class="rich-link__read-more">
+                                            <div class="rich-link__arrow">
+                                                <span class="inline-arrow-in-circle inline-icon ">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" class="inline-arrow-in-circle__svg inline-icon__svg">
+                                                    <path class="rich-link__arrow-icon" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m.21 19l-.637-.668 4.888-6.326H4.996v-1.01h11.465l-4.888-6.333.637-.668L19 11.153v.685l-6.79 7.157" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            <div class="rich-link__read-more-text"> Read more </div>
+                                        </div>
+                                        <a class="rich-link__link u-faux-block-link__overlay" href="{{obj.get_absolute_url}}" aria-label="{{obj.title}}"></a>
+                                    </div>
+                                </div>
+                            </aside>
+                            {% endfor %}
+                          
+                            <div class="after-article js-after-article"></div>
+
+                            <!-- <div class="contributions__epic " data-component="mem_acquisition_epic_AcquisitionsEpicFromGoogleDocThreeVariants_variant_3" data-link-name="epic">
+                                <div class="">
+                                    <div>
+                                        <h2 class="contributions__title contributions__title--epic">
+                                            Since you’re here… 
+                                        </h2>
+                                        <p class="contributions__paragraph contributions__paragraph--epic">… we have a small favour to ask. More people are reading the Telegraph than ever but advertising revenues across the media are falling fast. And unlike many news organisations, we don’t make people pay to access our journalism through a paywall, or limit the number of articles available – we want it to remain free and open to everyone. So you can see why we need to ask for your help.</p>
+                                        <p class="contributions__paragraph contributions__paragraph--epic">The Telegraph is editorially independent, meaning we set our own agenda. Our journalism is free from commercial bias and not influenced by billionaire owners, politicians or shareholders. No one edits our Editor. No one steers our opinion. This is important because it enables us to give a voice to the voiceless, challenge the powerful and hold them to account. It’s what makes us different to so many others in the media, at a time when factual, honest reporting is critical.</p>
+                                        <p class="contributions__paragraph contributions__paragraph--epic">If everyone who reads our reporting, who likes it, helps to support it, our future would be much more secure. <strong><span class="contributions__highlight">For as little as NGN1,000, you can support the Telegraph – and it only takes a minute. Thank you.</span></strong></p>
+                                    </div>
+                                    <div class="contributions__amount-field">
+                                        <div>
+                                            <a class="contributions__option-button contributions__contribute contributions__contribute--epic contributions__contribute--epic-member contributions__contribute--epic-single-button" href="https://support.telegraph.ng/contribute?REFPVID=jl2vsq010wopkql93l4t&amp;INTCMP=gdnwb_copts_memco_AcquisitionsEpicFromGoogleDocThreeVariants_variant_3&amp;acquisitionData=%7B%22source" target="_blank">
+                                              Support The Telegraph
+                                            </a>
+                                        </div>
+                                        <img class="contributions__payment-logos contributions__contribute--epic-member" src="{% static 'img/paypal-and-credit-card.png' %}" alt="Paypal and credit card">
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="submeta">
+                                <span class="submeta__label">Topics</span>
+                                <div class="submeta__section-labels">
+                                    <ul class="submeta__links">
+                                        <li class="submeta__link-item">
+                                            <a class="submeta__link" data-link-name="article section" href="">
+                                            {% if instance.caption %} {{instance.caption}} {% endif %}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="submeta__keywords">
+                                    <ul class="submeta__links">
+                                        {% for tag in instance.tags|slice:':6' %}
+                                        <li class="submeta__link-item">
+                                            <a class="submeta__link" href="" data-link-name="keyword: {{instance.category}}/{{tag}}">
+                                            {{tag}}
+                                            </a>
+                                        </li>
+                                        {% endfor %}
+                                        <li class="submeta__link-item">
+                                            <a class="submeta__link" href="/" data-link-name="tone: News">
+                                            news
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div data-component="share" class="submeta__share">
+                                    <ul class="social social--bottom js-social--bottom u-unstyled u-cf" data-component="social">
+                                        <li class="social__item social__item--facebook " data-link-name="facebook">
+                                            <a class="social__action js-social__action--top social-icon-wrapper" data-link-name="social top" href="https://www.facebook.com/dialog/share?app_id=525347664468132&amp;href={{ request.build_absolute_uri }}" target="_blank" title="Facebook">
+                                            <span class="inline-icon__fallback button">Share on Facebook</span>
+                                            <span class="inline-share-facebook inline-icon rounded-icon centered-icon social-icon social-icon--facebook">
+                                            <svg width="32" height="32" viewBox="-2 -2 32 32" class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--facebook__svg inline-share-facebook__svg inline-icon__svg">
+                                            <path d="M17.9 14h-3v8H12v-8h-2v-2.9h2V8.7C12 6.8 13.1 5 16 5c1.2 0 2 .1 2 .1v3h-1.8c-1 0-1.2.5-1.2 1.3v1.8h3l-.1 2.8z"></path>
+                                            </svg>
+                                            </span>
+                                            </a>
+                                        </li>
+                                        <li class="social__item social__item--twitter " data-link-name="twitter">
+                                            <a class="social__action js-social__action--top social-icon-wrapper" data-link-name="social top" href="https://twitter.com/intent/tweet?text={{ share_string|truncatechars:100 }}&amp;url={{ request.build_absolute_uri }}" target="_blank" title="Twitter">
+                                            <span class="inline-icon__fallback button">Share on Twitter</span>
+                                            <span class="inline-share-twitter inline-icon rounded-icon centered-icon social-icon social-icon--twitter">
+                                            <svg width="32" height="32" viewBox="-2 -2 32 32" class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--twitter__svg inline-share-twitter__svg inline-icon__svg">
+                                            <path d="M21.3 10.5v.5c0 4.7-3.5 10.1-9.9 10.1-2 0-3.8-.6-5.3-1.6.3 0 .6.1.8.1 1.6 0 3.1-.6 4.3-1.5-1.5 0-2.8-1-3.3-2.4.2 0 .4.1.7.1l.9-.1c-1.6-.3-2.8-1.8-2.8-3.5.5.3 1 .4 1.6.4-.9-.6-1.6-1.7-1.6-2.9 0-.6.2-1.3.5-1.8 1.7 2.1 4.3 3.6 7.2 3.7-.1-.3-.1-.5-.1-.8 0-2 1.6-3.5 3.5-3.5 1 0 1.9.4 2.5 1.1.8-.1 1.5-.4 2.2-.8-.3.8-.8 1.5-1.5 1.9.7-.1 1.4-.3 2-.5-.4.4-1 1-1.7 1.5z"></path>
+                                            </svg>
+                                            </span>
+                                            </a>
+                                        </li>
+                                        <li class="social__item social__item--email " data-link-name="email">
+                                            <a class="social__action js-social__action--top social-icon-wrapper" data-link-name="social top" href="mailto:?subject={{ object.title }}&amp;body={{ share_string }}" target="_blank" title="Email">
+                                            <span class="inline-icon__fallback button">Share via Email</span>
+                                            <span class="inline-share-email inline-icon rounded-icon centered-icon social-icon social-icon--email">
+                                            <svg width="32" height="32" viewBox="0 0 32 32" class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--email__svg inline-share-email__svg inline-icon__svg">
+                                            <path d="M23.363 20.875H8.637v-8.938l6.545 5.687h1.637l6.544-5.687v8.938zm-1.635-9.75L16 16l-5.728-4.875h11.456zM23.363 9.5H8.637L7 11.125v9.75L8.637 22.5h14.727L25 20.875v-9.75L23.363 9.5z"></path>
+                                            </svg>
+                                            </span>
+                                            </a>
+                                        </li>
+                                        <li class="social__item social__item--linkedin " data-link-name="linkedin">
+                                            <a class="social__action js-social__action--bottom social-icon-wrapper" data-link-name="social bottom" href="http://www.linkedin.com/shareArticle?mini=true&amp;title={{ instance.title }}&amp;url={{ request.build_absolute_uri }}" target="_blank" title="LinkedIn">
+                                                <span class=" u-h ">Share on LinkedIn</span>
+                                                <span class="inline-share-linkedin inline-icon rounded-icon centered-icon social-icon social-icon--linkedin">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--linkedin__svg inline-share-linkedin__svg inline-icon__svg">
+                                                <path d="M10.576 7.985a1.57 1.57 0 0 1 0 3.137 1.568 1.568 0 0 1 0-3.137zm-1.353 4.327h2.706v8.704H9.223v-8.704zm4.403 0h2.595v1.19h.037c.361-.685 1.244-1.407 2.56-1.407 2.737 0 3.243 1.803 3.243 4.147v4.774h-2.702v-4.232c0-1.01-.02-2.308-1.406-2.308-1.408 0-1.623 1.1-1.623 2.235v4.305h-2.704v-8.704"></path>
+                                                </svg>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="social__item social__item--pinterest " data-link-name="pinterest">
+                                            <a class="social__action js-social__action--bottom social-icon-wrapper" data-link-name="social bottom" href="http://www.pinterest.com/pin/find/?url={{ request.build_absolute_uri }}" target="_blank" title="Pinterest">
+                                                <span class=" u-h ">Share on Pinterest</span>
+                                                <span class="inline-share-pinterest inline-icon rounded-icon centered-icon social-icon social-icon--pinterest">
+                                                <svg viewBox="0 0 32 32" width="32" height="32" class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--pinterest__svg inline-share-pinterest__svg inline-icon__svg">
+                                                <path d="M16.363 8C12.133 8 10 11.13 10 13.74c0 1.582.58 2.988 1.823 3.512.204.086.387.003.446-.23.04-.16.137-.568.18-.737.06-.23.037-.312-.127-.513-.36-.436-.588-1-.588-1.802 0-2.322 1.684-4.402 4.384-4.402 2.39 0 3.703 1.508 3.703 3.522 0 2.65-1.136 4.887-2.822 4.887-.93 0-1.628-.795-1.405-1.77.268-1.165.786-2.42.786-3.262 0-.752-.39-1.38-1.2-1.38-.952 0-1.716 1.017-1.716 2.38 0 .867.284 1.454.284 1.454l-1.146 5.006c-.34 1.487-.05 3.31-.026 3.493.014.108.15.134.21.05.09-.117 1.223-1.562 1.61-3.006.108-.41.625-2.526.625-2.526.31.61 1.215 1.145 2.176 1.145 2.862 0 4.804-2.693 4.804-6.298C22 10.54 19.763 8 16.363 8"></path>
+                                                </svg>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="social__item social__item--gplus " data-link-name="gplus">
+                                            <a class="social__action js-social__action--bottom social-icon-wrapper" data-link-name="social bottom" href="https://plus.google.com/share?url={{ request.build_absolute_uri }}&amp;amp;hl=en-US&amp;amp;wwc=1" target="_blank" title="Google plus">
+                                                <span class=" u-h ">Share on Google+</span>
+                                                <span class="inline-share-gplus inline-icon rounded-icon centered-icon social-icon social-icon--gplus">
+                                                <svg width="32" height="32" viewBox="4 -4 32 32" class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--gplus__svg inline-share-gplus__svg inline-icon__svg">
+                                                <path d="M8.8 12c-.1 2.9 2 5.7 4.7 6.6 2.6.9 5.8.2 7.5-2 1.3-1.6 1.6-3.6 1.4-5.6h-6.7v2.4h4c-.3 1.2-1.1 2.2-2.3 2.7-2.3 1-5.1-.3-5.8-2.7-.9-2.3.5-5 2.9-5.7 1.4-.5 2.9.1 4.1.8l1.8-1.8c-1.4-1.2-3.2-1.9-5-1.7-3.6.1-6.8 3.4-6.6 7zm18-3v2h-2v2h2v2h2v-2h2v-2h-2V9h-2z"></path>
+                                                </svg>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="social__item social__item--whatsapp " data-link-name="whatsapp">
+                                            <a class="social__action js-social__action--bottom social-icon-wrapper" data-link-name="social bottom" href="whatsapp://send?text=%22{{ instance.title }}%22{{ request.build_absolute_uri }}" target="_blank" title="WhatsApp">
+                                                <span class=" u-h ">Share on WhatsApp</span>
+                                                <span class="inline-share-whatsapp inline-icon rounded-icon centered-icon social-icon social-icon--whatsapp">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--whatsapp__svg inline-share-whatsapp__svg inline-icon__svg">
+                                                <path d="M22.09 7.87a9.9 9.9 0 0 0-7.05-2.92c-5.49 0-9.96 4.47-9.96 9.96 0 1.75.46 3.47 1.33 4.98L5 25.04l5.28-1.38c1.45.79 3.09 1.21 4.76 1.21 5.49 0 9.96-4.47 9.96-9.96a9.92 9.92 0 0 0-2.91-7.04m-7.05 15.32c-1.49 0-2.95-.4-4.22-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.19 8.19 0 0 1-1.26-4.41c0-4.56 3.71-8.27 8.28-8.27 2.21 0 4.29.86 5.85 2.43a8.222 8.222 0 0 1 2.42 5.85c0 4.56-3.72 8.27-8.28 8.27m4.54-6.2c-.25-.12-1.47-.73-1.7-.81s-.39-.12-.56.12c-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23a7.283 7.283 0 0 1-1.38-1.72c-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.44.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.44.06-.66.31-.22.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.57.12.17 1.75 2.68 4.25 3.76.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18s.21-1.08.14-1.18c-.06-.08-.23-.14-.48-.27"></path>
+                                                </svg>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="social__item social__item--messenger " data-link-name="messenger">
+                                            <a class="social__action js-social__action--bottom social-icon-wrapper" data-link-name="social bottom" href="fb-messenger://share?link={{ request.build_absolute_uri }}%3FCMP%3Dshare_btn_me&amp;app_id=525347664468132" target="_blank" title="Messenger">
+                                                <span class=" u-h ">Share on Messenger</span>
+                                                <span class="inline-share-messenger inline-icon rounded-icon centered-icon social-icon social-icon--messenger">
+                                                <svg width="66" height="66" viewBox="-12 -12 90 90" class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--messenger__svg inline-share-messenger__svg inline-icon__svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M33 61.1c-3.6 0-7.1-.5-10.4-1.5L10.1 66V52.5C3.9 47 0 39.2 0 30.6 0 13.7 14.8 0 33 0s33 13.7 33 30.6c0 16.8-14.8 30.5-33 30.5zM36.5 41L28 32.2l-16.4 9 18-18.9 8.5 8.8 16.4-9-18 18.9z"></path>
+                                                </svg>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Advertisement -->
+                        <div>{% include 'adverts/ad_inside_banner_inline.html' %}</div>
+                        
+                        <div class="content__article-body from-content-api js-article__body" itemprop="articleBody" data-test-id="article-review-body">
+                            <h3 class="content__meta-heading right-most-popular__heading">Comments</h3>
+                            <p>{% include 'comments_field.html' %}</p>
+                        </div>
+
+                    </div>
+
+                    <div class="content__secondary-column js-secondary-column" aria-hidden="true">
+
+                        <!-- Advertisement -->
+                        {% include 'adverts/ad_inside_mpu_side1.html' %}
+
+                        <div class="js-components-container">
+                            <div class="js-right-most-popular right-most-popular right-most-popular--image component--rhc hide-on-childrens-books-site" data-component="geo-most-popular" data-importance="-1" data-test-id="right-most-popular">
+                                <h3 class="content__meta-heading right-most-popular__heading">You may also like </h3>
+                                <ul class="right-most-popular__items u-unstyled" data-link-name="Right hand most popular geo NG">
+                                    {% for obj in queryset_list|slice:':5' %} 
+                                    <li class="right-most-popular-item" data-link-name="trail | 2">
+                                        <a class="right-most-popular-item__url media u-cf" href="{{obj.get_absolute_url}}">
+                                            <div class="right-most-popular-item__img media__img">
+                                                <img class="responsiveimg" src="{{obj.get_image_url}}" alt="">
+                                            </div>
+                                            <div class="media__body right-most-popular__content">
+                                                <h4 class="right-most-popular-item__headline">
+                                                    <span class="right-most-popular__kicker">{% if obj.caption %} {{ obj.caption }} {% endif %}</span>
+                                                    {{obj.title}}
+                                                </h4>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Advertisement -->
+                        <!-- {% include 'adverts/ad_inside_mpu_side2.html' %} -->
+
+                    </div>
+                </div>
+            </div>
+        </article>
+        <div class="content-footer content-footer--pillar-sport">
+
+            <!-- <div class="fc-container fc-container--commercial">
+                <div id="dfp-ad--merchandising-high" class="js-ad-slot ad-slot ad-slot--merchandising-high ad-slot--fluid ad-slot--rendered" data-link-name="ad slot merchandising-high" data-name="merchandising-high" aria-hidden="true" data-mobile="1,1|2,2|88,87|fluid" data-label="false" data-refresh="false" data-google-query-id="" style="height: 268px;">
+                    <div id="" class="ad-slot__content" style="border: 0pt none; display: inline-block; width: 100%; height: 268px;">
+                        <img src="{% static 'img/telegraph-tutor.gif' %}" style="border: 0pt none; width: 300px; height: 250px;">
+                    </div>
+                </div>
+            </div> --> 
+
+            <!-- Mobile Advertisement -->
+            {% include 'adverts/ad_home_mpu_mobile.html' %}<br>
+
+            <aside class="related js-related hide-on-childrens-books-site lazyloaded" role="complementary" data-test-id="related-content" data-component="related-content">
+                <section id="related-stories" class="fc-container fc-container--will-have-toggle js-container--toggle " data-link-name="container-2 | related-stories" data-id="related stories" data-component="related-stories" aria-expanded="true">
+                    <div class="fc-container__inner">
+                        <div class="fc-container__header js-container__header">
+                            <div class="fc-container__header__title">
+                                <span tabindex="0">related stories</span>  
+                            </div>
+                        </div>
+                        <div class="fc-container--rolled-up-hide fc-container__body fc-show-more--hidden fc-show-more--mobile-only js-container--fc-show-more" data-title="related stories" data-id="related stories">
+                            <div class="fc-slice-wrapper">
+                                <ul class="u-unstyled l-row  l-row--cols-4 fc-slice fc-slice--q-q-q-q">
+                                    {% for related in related_list|slice:':4' %}
+                                    <li class="fc-slice__item l-row__item l-row__item--span-1 u-faux-block-link">
+                                        <div class="fc-item fc-item--has-image fc-item--has-metadata fc-item--has-timestamp fc-item--pillar-sport fc-item--type-article js-fc-item fc-item--list-media-mobile fc-item--standard-tablet js-snappable" data-link-name="news | group-0 | card-@1" data-item-visibility="all" data-test-id="facia-card" data-id="" data-loyalty-short-url="">
+                                            <div class="fc-item__container">
+                                                <div class="fc-item__media-wrapper">
+                                                    <div class="fc-item__image-container u-responsive-ratio ">
+                                                        <picture>
+                                                            <img class="responsive-img" alt="" src="{{related.get_image_url}}">
+                                                        </picture>
+                                                    </div>
+                                                </div>
+                                                <div class="fc-item__content ">
+                                                    <div class="fc-item__header">
+                                                        <h2 class="fc-item__title">
+                                                            <a href="{{related.get_absolute_url}}" class="fc-item__link" data-link-name="article">
+                                                                <span class="u-faux-block-link__cta fc-item__headline">
+                                                                    {% if related.caption %}<span class="fc-item__kicker">{{ related.caption }}</span>{% endif %}
+                                                                    <span class="js-headline-text">{{related.title}}</span>
+                                                                </span>
+                                                            </a>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="fc-item__standfirst-wrapper fc-item__standfirst-wrapper--timestamp">
+                                                        <div class="fc-item__standfirst">
+                                                            {{related.content|truncatewords:20}}
+                                                        </div>
+                                                        <aside class="fc-item__meta js-item__meta">
+                                                            <time class="fc-item__timestamp js-item__timestamp" datetime="{{instance.publish}}" data-timestamp="" data-relativeformat="short">
+                                                                <span class="inline-clock inline-icon ">
+                                                                    <svg width="11" height="11" viewBox="0 0 11 11" class="inline-clock__svg inline-icon__svg">
+                                                                    <path d="M5.4 0C2.4 0 0 2.4 0 5.4s2.4 5.4 5.4 5.4 5.4-2.4 5.4-5.4S8.4 0 5.4 0zm3 6.8H4.7V1.7h.7L6 5.4l2.4.6v.8z"></path>
+                                                                    </svg>
+                                                                </span>
+                                                                <span class="fc-timestamp__text">
+                                                                    <span class="u-h">Published: </span>{{related.publish|date}}
+                                                                </span>
+                                                            </time>
+                                                        </aside>
+                                                    </div>
+                                                </div>
+                                                <a href="{{related.get_absolute_url}}" class="u-faux-block-link__overlay js-headline-text" data-link-name="article" tabindex="-1" aria-hidden="true">{{related.title}}</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="fc-slice-wrapper">
+                                <ul class="u-unstyled l-row  l-row--cols-4 fc-slice fc-slice--ql-ql-ql-ql">
+                                    <li class="fc-slice__item l-row__item l-row__item--span-4">
+                                        <ul class="u-unstyled l-list l-list--columns-4 l-list--rows-2">
+                                            {% for related in related_list|slice:'4:6' %}
+                                            <li class="fc-slice__item l-list__item l-row__item l-row__item--span-1 u-faux-block-link">
+                                                <div class="fc-item fc-item--has-image fc-item--has-metadata fc-item--has-timestamp fc-item--pillar-sport fc-item--type-article js-fc-item fc-item--list-mobile fc-item--list-tablet js-snappable" data-link-name="news | group-0 | card-@5" data-item-visibility="all" data-test-id="facia-card" data-id="" data-loyalty-short-url="">
+                                                    <div class="fc-item__container">
+                                                        <div class="fc-item__content ">
+                                                            <div class="fc-item__header">
+                                                                <h2 class="fc-item__title">
+                                                                    <a href="{{related.get_absolute_url}}" class="fc-item__link" data-link-name="article">
+                                                                        <span class="u-faux-block-link__cta fc-item__headline">
+                                                                            {% if related.caption %}<span class="fc-item__kicker">{{ related.caption }}</span>{% endif %}
+                                                                            <span class="js-headline-text">{{related.title}}</span>
+                                                                        </span>
+                                                                    </a>
+                                                                </h2>
+                                                            </div>
+                                                            <div class="fc-item__standfirst-wrapper fc-item__standfirst-wrapper--timestamp">
+                                                                <aside class="fc-item__meta js-item__meta">
+                                                                    <time class="fc-item__timestamp js-item__timestamp" datetime="{{instance.publish}}" data-timestamp="" data-relativeformat="short">
+                                                                        <span class="inline-clock inline-icon">
+                                                                            <svg width="11" height="11" viewBox="0 0 11 11" class="inline-clock__svg inline-icon__svg">
+                                                                                <path d="M5.4 0C2.4 0 0 2.4 0 5.4s2.4 5.4 5.4 5.4 5.4-2.4 5.4-5.4S8.4 0 5.4 0zm3 6.8H4.7V1.7h.7L6 5.4l2.4.6v.8z"></path>
+                                                                            </svg>
+                                                                        </span>
+                                                                        <span class="fc-timestamp__text">
+                                                                            <span class="u-h">Published: </span>{{related.publish|date}}
+                                                                        </span>
+                                                                    </time>
+                                                                </aside>
+                                                            </div>
+                                                        </div>
+                                                        <a href="{{related.get_absolute_url}}" class="u-faux-block-link__overlay js-headline-text" data-link-name="article" tabindex="-1" aria-hidden="true">{{related.title}}</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                            {% for related in related_list|slice:'6:8' %}
+                                            <li class="fc-show-more--hide-on-mobile js-hide-on-mobile fc-slice__item l-list__item l-row__item l-row__item--span-1 u-faux-block-link">
+                                                <div class="fc-item fc-item--has-image fc-item--has-metadata fc-item--has-timestamp fc-item--pillar-sport fc-item--type-article js-fc-item fc-item--list-mobile fc-item--list-tablet js-snappable" data-link-name="news | group-0 | card-@7" data-item-visibility="desktop" data-test-id="facia-card" data-id="" data-loyalty-short-url="">
+                                                    <div class="fc-item__container">
+                                                        <div class="fc-item__content ">
+                                                            <div class="fc-item__header">
+                                                                <h2 class="fc-item__title">
+                                                                    <a href="{{related.get_absolute_url}}" class="fc-item__link" data-link-name="article">
+                                                                        <span class="u-faux-block-link__cta fc-item__headline">
+                                                                            <span class="js-headline-text">{{related.title}}</span>
+                                                                        </span>
+                                                                    </a>
+                                                                </h2>
+                                                            </div>
+                                                            <div class="fc-item__standfirst-wrapper fc-item__standfirst-wrapper--timestamp">
+                                                                <aside class="fc-item__meta js-item__meta">
+                                                                    <time class="fc-item__timestamp js-item__timestamp" datetime="{{instance.publish}}" data-timestamp="" data-relativeformat="short">
+                                                                        <span class="inline-clock inline-icon ">
+                                                                            <svg width="11" height="11" viewBox="0 0 11 11" class="inline-clock__svg inline-icon__svg">
+                                                                            <path d="M5.4 0C2.4 0 0 2.4 0 5.4s2.4 5.4 5.4 5.4 5.4-2.4 5.4-5.4S8.4 0 5.4 0zm3 6.8H4.7V1.7h.7L6 5.4l2.4.6v.8z"></path>
+                                                                            </svg>
+                                                                        </span>
+                                                                        <span class="fc-timestamp__text">
+                                                                            <span class="u-h">Published: </span>{{related.publish|date}}
+                                                                        </span>
+                                                                    </time>
+                                                                </aside>
+                                                            </div>
+                                                        </div>
+                                                        <a href="{{related.get_absolute_url}}" class="u-faux-block-link__overlay js-headline-text" data-link-name="article" tabindex="-1" aria-hidden="true">{{related.title}}</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="js-show-more-placeholder"></div>
+                            <!-- <button class="button button--medium button--primary button--show-more collection__show-more js-show-more-button modern-visible" data-test-id="show-more" data-link-name="more">
+                                <span class="inline-plus inline-icon ">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" class="inline-plus__svg inline-icon__svg">
+                                    <path d="M8.2 0h1.6l.4 7.8 7.8.4v1.6l-7.8.4-.4 7.8H8.2l-.4-7.8L0 9.8V8.2l7.8-.4.4-7.8z"></path>
+                                    </svg>
+                                </span>
+                                <span class="inline-minus inline-icon ">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" class="inline-minus__svg inline-icon__svg">
+                                        <path d="M5 15h22v3H5z"></path>
+                                    </svg>
+                                </span>
+                                <span class="js-button-text">More related stories</span>
+                            </button> -->
+                        </div>
+                    </div>                    
+                </section>
+            </aside>
+
+            <!-- Mobile Advertisement -->
+            {% include 'adverts/ad_home_mpu_mobile2.html' %}
+
+            
+            <br><br><br>{% include 'sponsored.html' %}<br><br><br>
+            
+
+            <!-- Mobile Advertisement -->
+            {% include 'adverts/ad_inside_mpu_mobile3.html' %}
+            <br><br>
+
+
+            <div class="fc-container fc-container--outbrain hide-on-childrens-books-site js-outbrain">
+            <div class="fc-container__inner js-outbrain-container"></div>
+            </div>
+            <aside id="onward" class="onward js-onward facia-container facia-container--layout-content  js-outbrain-anchor" role="complementary"></aside>
+            <aside id="more-in-section" class="more-in-section js-more-in-section facia-container facia-container--layout-content " role="complementary"></aside>
+
+        </div>
+    </div>
+
+    
+    {% include 'footer.html' %}
+
+
+    <div class="site-message-overlay js-site-message-overlay is-hidden" data-link-name="release message : overlay"></div>
+    <div class="site-message js-site-message is-hidden" tabindex="-1" data-link-name="release message" role="dialog" aria-label="welcome" aria-describedby="site-message__message">
+        <div class="gs-container">
+            <div class="site-message__inner js-site-message-inner">
+                <div class="site-message__roundel">
+                    <span class="inline-marque-36 inline-icon u-vertical-align-middle-icon">
+                        <svg width="36" height="36" viewBox="0 0 36 36" class="u-vertical-align-middle-icon__svg inline-marque-36__svg inline-icon__svg">
+                        <path d="M18 0a18 18 0 1 0 0 36 18 18 0 0 0 0-36"></path>
+                        <path fill="#FFF" d="M21.2 4.4c2.3.4 5.3 2 6.3 3.1v5.2H27L21.2 5v-.6zm-2.2.4c-4 0-6.3 5.6-6.3 13.2 0 7.7 2.2 13.3 6.3 13.3v.6c-6 .4-14.4-4.2-14-13.8A13.3 13.3 0 0 1 19 4v.7zm10.4 14.4l-1.9.9v8.6c-1 1-3.8 2.6-6.3 3.1V19.9l-2.2-.7v-.6h10.4v.6z"></path>
+                        </svg>
+                    </span>
+                </div>
+                <div class="site-message__copy js-site-message-copy u-cf">
+                </div>
+                <div class="site-message__close">
+                    <button class="site-message__close-btn js-site-message-close" data-link-name="hide release message">
+                        <span class="u-h">Close</span>
+                        <span class="inline-close inline-icon inline-close--small">
+                            <svg width="18" height="18" viewBox="0 0 18 18" class="inline-close--small__svg inline-close__svg inline-icon__svg">
+                            <path d="M7.5 9L1 2l1-1 7 6.5L16 1l1 1-6.5 7 6.5 7-1 1-7-6.5L2 17l-1-1 6.5-7z"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static '/js/jquery-3.2.1.slim.min.js' %}" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/static/js/jquery-slim.min.js"><\/script>')</script>
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script> 
+
+</body>
+</html>
+
+
+

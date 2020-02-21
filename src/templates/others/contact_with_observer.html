@@ -1,0 +1,125 @@
+{% extends 'others/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+
+     {% block head_title %} How to contact the Telegraph and the Observer {% endblock %}
+     {% block caption %} Contacts {% endblock %}     
+     {% block title %} How to contact the Telegraph and the Observer {% endblock %}
+     {% block image %} 
+        <figure itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject" data-component="image" class="media-primary media-content ()" data-media-id="" id="img-1">
+            <meta itemprop="representativeOfPage" content="true">
+            <a href="{{request.build_absolute_uri}}#img-1" class="article__img-container js-gallerythumbs" data-link-name="Launch Article Lightbox" data-is-ajax="">
+                <div class="u-responsive-ratio" style="padding-bottom: 60.01%">
+                    <picture>
+                        <img class="maxed responsive-img" itemprop="contentUrl" alt="About us" src="{% static 'img/contact-us.jpg' %}">
+                    </picture>
+                </div>
+            </a>
+            <input type="checkbox" id="show-caption" class="mobile-only u-h reveal-caption__checkbox">
+            <label class="mobile-only reveal-caption reveal-caption--img" for="show-caption">
+                <span class="inline-information inline-icon reveal-caption-icon centered-icon">
+                <svg width="6" height="14" viewBox="0 0 6 14" class="reveal-caption-icon__svg centered-icon__svg inline-information__svg inline-icon__svg">
+                <path d="M4.6 12l-.4 1.4c-.7.2-1.9.6-3 .6-.7 0-1.2-.2-1.2-.9 0-.2 0-.3.1-.5l2-6.7H.7l.4-1.5 4.2-.6h.2L3 12h1.6zm-.3-9.2c-.9 0-1.4-.5-1.4-1.3C2.9.5 3.7 0 4.6 0 5.4 0 6 .5 6 1.3c0 1-.8 1.5-1.7 1.5z"></path>
+                </svg>
+                </span>
+            </label>
+        </figure>
+     {% endblock %}
+
+     {% block content %}
+                            
+        <h2>Nigeria contact office</h2>
+        <!-- <p>Please address written correspondence to the Telegraph, 45/61 Moore House Street, Ogui, Enugu, Nigeria.<br></p> -->
+        <p>The contact number for the Nigeria office of the Telegraph, the Observer and the Telegraph website is:</p>
+        <p><strong>0809 867 7126</strong> or dialling from overseas <strong>+234 809 867 7126</strong>.</p>
+
+        <h2>To contact editorial departments and desks</h2>
+        <p>Please take care to send queries to the correct destination as there is no guarantee that messages will be forwarded. </p>
+
+        <p><strong>To contact any member of staff</strong><br>Individual staff, whether editorial or commercial, can be contacted using this email format:<br></p>
+        <ul>
+            <li>firstname.lastname@telegraph.ng</li>
+            <li>firstname.lastname@observer.ng<br></li>
+        </ul>
+
+        <p><strong>Letters to the editor</strong><br>Letters for publication should be sent to these addresses. The sender's full postal address and phone number are required, for verification only:<br>Telegraph: <a href="mailto:letters@telegraph.ng" data-link-name="in body link" class="u-underline">letters@telegraph.ng</a><br>Observer: <a href="mailto:letters@observer.ng" data-link-name="in body link" class="u-underline">letters@observer.ng</a></p>
+
+        <p><strong>Corrections and clarifications of editorial content – the readers' editors</strong><br>It is the policy of the Telegraph and the Observer to correct significant editorial errors and handle editorial complaints as soon as possible. The readers' editors are independent internal ombudsmen and can be contacted as follows:</p>
+        <p>John Tiga – Telegraph global readers' editor<br>
+            <a href="mailto:readers@telegraph.ng" data-link-name="in body link" class="u-underline">readers@telegraph.ng</a><br>
+            <a href="mailto:readers@observer.ng" data-link-name="in body link" class="u-underline">readers@observer.ng</a><br>
+        </p>
+        <p><small><em>[Please note that queries about subscriptions, vouchers, reader offers, advertising, marketing and other non-editorial areas are not handled by the readers' editors. These should be addressed to the relevant non-editorial departments. Story suggestions should also be sent to the relevant editorial departments.]</em></small></p>
+        
+        <p><strong>Legal complaints</strong><br>Legal complaints should be addressed to our Editorial Legal Services department at: 45/61 Moore House Street, Ogui, Enugu, Nigeria; <a href="mailto:law.editors@telegraph.ng" data-link-name="in body link" class="u-underline">law.editors@telegraph.ng</a></p>
+        <h2>The Telegraph: editorial departments and desks</h2>
+        <ul>
+            <li>Arts desk <a href="mailto:culture@telegraph.ng" data-link-name="in body link" class="u-underline">culture@telegraph.ng</a> or <a href="mailto:arts@telegraph.ng" data-link-name="in body link" class="u-underline">arts@telegraph.ng</a></li>
+            <li>Books competitions and events <a href="mailto:books@telegraph.ng" data-link-name="in body link" class="u-underline">books@telegraph.ng</a> <br><em><small>[This address is used for correspondence about online competitions, poetry work shops, and the like. For all other emails about books, see Review, below]</small></em></li>
+            <li>Business desk and financial staff <a href="mailto:financial@telegraph.ng" data-link-name="in body link" class="u-underline">financial@telegraph.ng</a></li>
+            <li>Cities desk <a href="mailto:cities@telegraph.ng" data-link-name="in body link" class="u-underline">cities@telegraph.ng</a></li>
+            <li>Consumer investigative desk <a href="mailto:consumer@telegraph.ng" data-link-name="in body link" class="u-underline">consumer@telegraph.ng</a></li>
+            <li>Education desk <a href="mailto:education@telegraph.ng" data-link-name="in body link" class="u-underline">education@telegraph.ng</a></li>
+            <li>Film desk <a href="mailto:film@telegraph.ng" data-link-name="in body link" class="u-underline">film@telegraph.ng</a></li>
+            <li>International news desk <a href="mailto:international@telegraph.ng" data-link-name="in body link" class="u-underline">international@telegraph.ng</a></li>
+            <li>Law desk <a href="mailto:law.editors@telegraph.ng" data-link-name="in body link" class="u-underline">law.editors@telegraph.ng</a></li>
+            <li>Letters <a href="mailto:letters@telegraph.ng" data-link-name="in body link" class="u-underline">letters@telegraph.ng</a></li>
+            <li>Life and style <a href="mailto:lifestyle@telegraph.ng" data-link-name="in body link" class="u-underline">lifestyle@telegraph.ng</a></li>
+            <li>Media Telegraph <a href="mailto:media@telegraph.ng" data-link-name="in body link" class="u-underline">media@telegraph.ng</a></li>
+            <li>Money personal finance section <a href="mailto:money@telegraph.ng" data-link-name="in body link" class="u-underline">money@telegraph.ng</a></li>
+            <li>Music <a href="mailto:culture@telegraph.ng" data-link-name="in body link" class="u-underline">culture@telegraph.ng</a></li>
+            <li>News desk, for Nigeria national news <a href="mailto:national@telegraph.ng" data-link-name="in body link" class="u-underline">national@telegraph.ng</a></li>
+            <li>Notes and queries <a href="mailto:nq@telegraph.ng" data-link-name="in body link" class="u-underline">nq@telegraph.ng</a></li>
+            <li>Obituaries desk <a href="mailto:obituaries@telegraph.ng" data-link-name="in body link" class="u-underline">obituaries@telegraph.ng</a></li>
+            <li>Opinion desk <a href="mailto:opinion@telegraph.ng" data-link-name="in body link" class="u-underline">opinion@telegraph.ng</a></li>
+            <li>Pictures: for emails from readers, agencies and PRs <a href="mailto:pictures@telegraph.ng" data-link-name="in body link" class="u-underline">pictures@telegraph.ng</a></li>
+            <li>Pictures: for advisories on film openings, PR openings and similar <a href="mailto:photocalls@telegraph.ng" data-link-name="in body link" class="u-underline">photocalls@telegraph.ng</a></li>
+            <li>Political staff <a href="mailto:politics@telegraph.ng" data-link-name="in body link" class="u-underline">politics@telegraph.ng</a></li>
+            <li>Review <a href="mailto:review@telegraph.ng" data-link-name="in body link" class="u-underline">review@telegraph.ng</a></li>
+            <li>Science desk <a href="mailto:science@telegraph.ng" data-link-name="in body link" class="u-underline">science@telegraph.ng</a></li>
+            <li>Technology desk <a href="mailto:technology@telegraph.ng" data-link-name="in body link" class="u-underline">technology@telegraph.ng</a></li>
+            <li>Society <a href="mailto:society@telegraph.ng" data-link-name="in body link" class="u-underline">society@telegraph.ng</a></li>
+            <li>Sport desk <a href="mailto:sport@telegraph.ng" data-link-name="in body link" class="u-underline">sport@telegraph.ng</a></li>
+            <li>Travel desk <a href="mailto:travel@telegraph.ng" data-link-name="in body link" class="u-underline">travel@telegraph.ng</a></li>
+        </ul>
+
+        <h2>The Observer departmental emails</h2>
+        <ul>
+            <li>Business <a href="mailto:financial@telegraph.ng" data-link-name="in body link" class="u-underline">financial@telegraph.ng</a><br></li>
+            <li>Cash <a href="mailto:cash@observer.ng" data-link-name="in body link" class="u-underline">cash@observer.ng</a><br></li>
+            <li>Consumer investigative column <a href="mailto:consumer@observer.ng" data-link-name="in body link" class="u-underline">consumer@observer.ng</a> <br></li>
+            <li>Escape <a href="mailto:escape@observer.ng" data-link-name="in body link" class="u-underline">escape@observer.ng</a><br></li>
+            <li>Food <a href="mailto:food@observer.ng" data-link-name="in body link" class="u-underline">food@observer.ng</a><br></li>
+            <li>Letters to the editor <a href="mailto:letters@observer.ng" data-link-name="in body link" class="u-underline">letters@observer.ng</a><br></li>
+            <li>Magazine <a href="mailto:magazine@observer.ng" data-link-name="in body link" class="u-underline">magazine@observer.ng</a><br></li>
+            <li>Review <a href="mailto:review@observer.ng" data-link-name="in body link" class="u-underline">review@observer.ng</a><br></li>
+            <li>Sport <a href="mailto:sport@observer.ng" data-link-name="in body link" class="u-underline">sport@observer.ng</a><br></li>
+            <li>Travel – See Escape TV and radio <a href="mailto:review@observer.ng" data-link-name="in body link" class="u-underline">review@observer.ng</a></li>
+        </ul>
+        
+        <h2>Customer Services</h2>
+        <h2><strong><br>W</strong><strong>ebsite user help at the Telegraph</strong></h2>
+        <p>For any problems using the website, our mobile apps and broken link, or general questions and feedback about the Telegraph network, please email <a href="mailto:contact@telegraph.ng" data-link-name="in body link" class="u-underline">contact@telegraph.ng</a>.</p>
+        <h2>To report a suspected security vulnerability </h2>
+        <p>If you spot a potential security vulnerability in the Telegraph's websites and apps, we'd be grateful to hear from you. Please send an encrypted email to <a href="mailto:appsec@telegraph.ng" data-link-name="in body link" class="u-underline">appsec@telegraph.ng</a>. If possible, include screenshots in your description. We may contact you for more details. Thanks for your help.</p>
+        
+        <h2>Advertisers, sponsorship and e-commerce</h2>
+        <p>To find out more about all advertising and sponsorship opportunities in the Telegraph and the Observer, and the Telegraph website, <a href="/advertising/" data-link-name="in body link" class="u-underline">click here</a>.</p>
+        <p>If you have a question or concern about an advert on the site please report the problem to <a href="mailto:readers@telegraph.ng" data-link-name="in body link" class="u-underline">readers@telegraph.ng</a>.</p>
+        <h2>How to contact the press office</h2>
+        <p>If you are a journalist with a media inquiry, please contact <a href="mailto:media@telegraph.ng" data-link-name="in body link" class="u-underline">media@telegraph.ng</a> for the relevant contact information.</p>
+        <h2>Freelance contributions</h2>
+        <p>If you would like to contribute freelance content, please ensure you have read our <a href="/contributors-guide-and-contacts/" data-link-name="in body link" class="u-underline">Contributors' guide</a>.</p>
+        <p>Story pitches should be sent to relevant editorial department, as listed above.</p>
+
+        <h2>Employment and work experience</h2>
+        <p>If you are interested in working for Telegraph News and Media, please see our dedicated careers page at <a href="/workforus/" data-link-name="in body link" class="u-underline">telegraph.ng/workforus</a></p>
+        <h2>Content distribution and syndication<br></h2>
+        <p>For permission to re-publish Telegraph or Observer content, or acquire a licence to re-distribute our content, please contact <a href="mailto:readers@telegraph.ng" data-link-name="in body link" class="u-underline">readers@telegraph.ng</a></p>
+        <!-- <p><strong>Couldn't find what you were looking for?</strong></p> -->
+                            
+        {% endblock content %}
+                         

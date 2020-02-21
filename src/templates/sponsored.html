@@ -1,0 +1,61 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+    <section id="sponsored">
+        <div class="fc-container" data-component="labs-commercial-container-9">
+            <aside class="dumathoin dumathoin--legacy dumathoin--capi dumathoin--paidfor dumathoin--tone-paidfor">
+                <header class="dumathoin__header">
+                    <div class="adverts__kicker">
+                        <div class="paidfor-meta">
+                            <span class="paidfor-meta__label">Sponsored content</span>
+                            <div class="paidfor-label paidfor-meta__more has-popup">
+                                <!-- <button class="u-button-reset paidfor-label__btn popup__toggle js-toggle-ready" data-toggle="js-paidfor-popupc35cfd18-62b7-4224-a0e1-9bfe41510b74">
+                                    About 
+                                </button> -->
+                                <div class="popup popup--paidfor js-paidfor-popupc35cfd18-62b7-4224-a0e1-9bfe41510b74 is-off">
+                                    <span class="popup--paidfor__title">Paid content is paid for and controlled by an advertiser and produced by the Telegraph media team.</span>
+                                    <a class="popup--paidfor__link" href="https://www.telegraph.ng/content-funding">Learn more about Telegraph Labs content <span class="inline-arrow-right inline-icon ">
+                                     </span> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h1 class="dumathoin__title"> 
+                        <a class="adverts__logo u-text-hyphenate" href="#">Lit media</a> 
+                    </h1>
+                    <div class="dumathoin__stamp">
+                        <a href="#"> 
+                            <span class="inline-glabs-logo inline-logo ">
+                            <svg width="88.9" height="47" class="inline-glabs-logo__svg inline-logo__svg">
+                              <img src="{% static '/img/logo.png' %}" style="max-width: 100px;">
+                            </svg> </span> <span class="u-h">Telegraph Lab</span> 
+                        </a>
+                    </div>
+                </header>
+                <div class="dumathoin__body">
+                    <div class="dumathoin__row">
+                      {% for obj in sponsored_list|slice:'0:4' %}
+                        <div class="paidfor-container ">
+                            <a href="{{obj.get_absolute_url}}" data-link-name="Labs front container | INT | international | container-10 | Clinique city skin | Clinique | card-1 | How the outdoors can revitalise mind, body and skin" data-component="Labs front container | INT | international | container-10 | Clinique city skin | Clinique | card-1 | How the outdoors can revitalise mind, body and skin" class="vergadain  vergadain--capi vergadain--text vergadain--paidfor "> 
+                                <h2 class="advert__title"> 
+                                    {% if obj.caption %}<span class="advert__kicker">{{ obj.caption }}</span>{% endif %} 
+                                    {{obj.title}}
+                                </h2>
+                                <div class="advert__image-container">
+                                  <picture>
+                                      <img class="advert__image" alt="" src="{{obj.get_image_url}}">
+                                  </picture>
+                                </div>
+                                <div class="advert__standfirst">
+                                    <!-- {{obj.content|truncatewords:15}} -->
+                                </div> 
+                            </a>
+                        </div>
+                      {% endfor %}
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>

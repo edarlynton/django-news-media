@@ -1,0 +1,39 @@
+{% extends 'others/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+
+     {% block head_title %} Working for the Telegraph and the Observer {% endblock %}
+     {% block caption %} Careers {% endblock %}     
+     {% block title %} Work for the Telegraph News and Media {% endblock %}
+      {% block image %} 
+        <figure itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject" data-component="image" class="media-primary media-content ()" data-media-id="" id="img-1">
+            <meta itemprop="representativeOfPage" content="true">
+            <a href="{{request.build_absolute_uri}}#img-1" class="article__img-container js-gallerythumbs" data-link-name="Launch Article Lightbox" data-is-ajax="">
+                <div class="u-responsive-ratio" style="padding-bottom: 60.01%">
+                    <picture>
+                        <img class="maxed responsive-img" itemprop="contentUrl" alt="About us" src="{% static 'img/tgh_w.png' %}">
+                    </picture>
+                </div>
+            </a>
+            <input type="checkbox" id="show-caption" class="mobile-only u-h reveal-caption__checkbox">
+            <label class="mobile-only reveal-caption reveal-caption--img" for="show-caption">
+                <span class="inline-information inline-icon reveal-caption-icon centered-icon">
+                <svg width="6" height="14" viewBox="0 0 6 14" class="reveal-caption-icon__svg centered-icon__svg inline-information__svg inline-icon__svg">
+                <path d="M4.6 12l-.4 1.4c-.7.2-1.9.6-3 .6-.7 0-1.2-.2-1.2-.9 0-.2 0-.3.1-.5l2-6.7H.7l.4-1.5 4.2-.6h.2L3 12h1.6zm-.3-9.2c-.9 0-1.4-.5-1.4-1.3C2.9.5 3.7 0 4.6 0 5.4 0 6 .5 6 1.3c0 1-.8 1.5-1.7 1.5z"></path>
+                </svg>
+                </span>
+            </label>
+        </figure>
+      {% endblock %}
+
+      {% block content %}
+
+        <h2>Employment and work experience</h2>
+        <p>A career at The Telegraph means being part of an iconic and innovative brand. We have a culture that rewards performance, values its people and embraces diversity of thought and opinion.</p>
+        <p>If you are interested in working for the Telegraph, please kindly email your resume to <a href="mailto:jobs@telegraph.ng" data-link-name="in body link" class="u-underline">jobs@telegraph.ng</a></p>
+                            
+      {% endblock content %}
+                         

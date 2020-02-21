@@ -1,0 +1,233 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+ 
+<!DOCTYPE html>
+<html id="js-context" class="js-on is-modern id--signed-out svg has-flex has-flex-wrap has-fixed has-sticky should-kern" lang="en" data-page-path="/{{instance.category}}/{{instance.slug}}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{% block head_title %}  {% endblock head_title %}| The Telegraph Nigeria</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    
+    <meta name="description" content="Breaking news and special reports from Nigeria and around the world, Breaking news, politics, business, sport, opinion and more">
+    <meta name="author" content="">
+    <meta name="keywords" content="News, Breaking News, Nigeria News, politics, business, sport, opinion">
+
+    <meta property="article:publisher" content="https://www.facebook.com/telegraphng">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="{{instance.category}} news">
+    <!-- <meta property="article:tag" content="{% for tag in instance.tags %} {{tag}}, {% endfor %}"> -->
+    <meta property="og:site_name" content="the Telegraph">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@telegraphng">
+    <meta name="twitter:creator" content="@telegraphng">
+    <meta name="twitter:description" content="{{instance.content|truncatechars:150}}">
+    <meta name="twitter:image" content="{{instance.get_image_url}}">
+    <meta name="twitter:image:alt" content="{{instance.image_caption}}">
+    <meta property="og:title" content="{{instance.title}}">
+
+    <link rel="alternate" href="ios-app://{{instance.id}}/{{ request.build_absolute_uri }}contenttype=Article&amp;source=google">
+    <style class="js-loggable">
+        .svg .i,
+        .svg .caption:before,
+        .svg figcaption:before,
+        .svg blockquote.quoted:before {
+            background-image: none;
+        }
+    </style>
+
+    <link rel="icon" href="{% static '/img/favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static '/css/font-awesome.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static '/css/content.garnett.css' %}" media="screen">
+    <noscript>
+        <link rel="stylesheet" type="text/css" href="{% static '/css/content.garnett.css' %}"/>
+    </noscript>
+    <link rel="stylesheet" media="print" type="text/css" href="{% static '/css/print.css' %}">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="{% static '/css/blog.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/js-loggable.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/custom.css' %}" rel="stylesheet">
+
+    <style>
+    {% block style %}{% endblock style %}
+    </style>  
+    {% block head_extra %}    {% endblock head_extra %}
+
+    {% include 'google_analytics.html' %}
+
+    {% include 'header_detail_script.html' %}
+    
+</head>
+<body id="top" class="" itemscope="" itemtype="http://schema.org/WebPage">
+    
+    <a class="u-h skip" href="{{request.get_full_path}}#maincontent" data-link-name="skip : main content">Skip to main content</a>
+    <div id="bannerandheader">
+        <div class="top-banner-ad-container js-top-banner">
+            <!-- Advertisement -->
+            {% include 'adverts/ad_home_banner_top.html' %}
+        </div>
+        
+        {% include 'navbar.html' %}
+        <nav>{% include "messages_display.html" %}</nav>
+        <span class="new-header"></span>
+    </div>
+
+    <div id="maincontent" tabindex="0"></div>
+    <div class="js-breaking-news-placeholder breaking-news breaking-news--hidden breaking-news--fade-in" data-link-name="breaking news" data-component="breaking-news">
+    </div>
+    <div class="l-side-margins">
+        <article id="article" data-test-id="article-root" class="content content--article content--pillar-sport content--type-article section-us-news tonal tonal--tone-news" itemscope="" itemtype="http://schema.org/NewsArticle" role="main">
+            <meta itemprop="mainEntityOfPage" content="{{ request.build_absolute_uri }}">
+            <div itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+                <meta itemprop="name" content="The Telegraph">
+                <div itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject">
+                    <meta itemprop="url" content="{{instance.get_image_url}}">
+                    <meta itemprop="width" content="190">
+                    <meta itemprop="height" content="60">
+                </div>
+                <link itemprop="sameAs" href="https://www.telegraph.ng/">
+            </div>
+            <div class="content__main tonal__main tonal__main--tone-news">
+                <div class="gs-container">
+                    <div class="content__main-column content__main-column--article js-content-main-column">
+                        <header class="content__head content__head--article tonal__head tonal__head--tone-news">
+                            <div class="matchreport">
+                                <div class="js-score"></div>
+                                <div class="js-sport-tabs football-tabs"></div>
+                            </div>
+                            <div class="content__labels content__labels--not-immersive">
+                                <div class="content__section-label content__label">
+                                    <a class="content__label__link" data-link-name="article section" href="{{request.build_absolute_uri}}">
+                                        <span class="label__link-wrapper">{% block caption %} About {% endblock %}</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="content__headline-standfirst-wrapper">
+                                <div class="content__header tonal__header">
+                                    <div class="u-cf">
+                                        <h1 class="content__headline " itemprop="headline">
+                                         {% block title %} Welcome to the Telegraph {% endblock %}
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div class="tonal__standfirst u-cf">
+                                    <div class="content__standfirst" data-link-name="standfirst" data-component="standfirst">
+                                        <meta itemprop="description" content=" About Us">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content__meta-container js-content-meta js-football-meta u-cf content__meta-container--twitter content__meta-container--email">                                
+                            </div>
+                            {% block image %}
+                            <figure itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject" data-component="image" class="media-primary media-content ()" data-media-id="" id="img-1">
+                                <meta itemprop="representativeOfPage" content="true">
+                                <a href="{{request.build_absolute_uri}}#img-1" class="article__img-container js-gallerythumbs" data-link-name="Launch Article Lightbox" data-is-ajax="">
+                                    <div class="u-responsive-ratio" style="padding-bottom: 60.01%">
+                                        <picture>
+                                            <img class="maxed responsive-img" itemprop="contentUrl" alt="" src="{% static 'img/3000.jpg' %}">
+                                        </picture>
+                                    </div>
+                                </a>
+                                <input type="checkbox" id="show-caption" class="mobile-only u-h reveal-caption__checkbox">
+                                <label class="mobile-only reveal-caption reveal-caption--img" for="show-caption">
+                                    <span class="inline-information inline-icon reveal-caption-icon centered-icon">
+                                    <svg width="6" height="14" viewBox="0 0 6 14" class="reveal-caption-icon__svg centered-icon__svg inline-information__svg inline-icon__svg">
+                                    <path d="M4.6 12l-.4 1.4c-.7.2-1.9.6-3 .6-.7 0-1.2-.2-1.2-.9 0-.2 0-.3.1-.5l2-6.7H.7l.4-1.5 4.2-.6h.2L3 12h1.6zm-.3-9.2c-.9 0-1.4-.5-1.4-1.3C2.9.5 3.7 0 4.6 0 5.4 0 6 .5 6 1.3c0 1-.8 1.5-1.7 1.5z"></path>
+                                    </svg>
+                                    </span>
+                                </label>
+                            </figure>
+                            {% endblock image %}
+                            <div class="media-primary">
+                            </div>
+                        </header>
+                        <div class="content__article-body from-content-api js-article__body" itemprop="articleBody" data-test-id="article-review-body">
+                            <figure class="element element-interactive interactive" data-interactive="https://interactive.guim.co.uk/page-enhancers/nav/boot.js" data-canonical-url="https://interactive.guim.co.uk/page-enhancers/nav/boot.js" data-alt="Contents">
+                            </figure>
+                            {% block content %}
+                          <p>The Telegraph is a leading, multimedia news brand that has been synonymous with quality, authority and credibility for the purpose of presenting balanced coverage of events, and of promoting the best interests of Nigeria. It owes allegiance to no political party, ethnic community, religious or other interest group. Its primary commitment is to the integrity and sovereignty of the Federation of Nigeria, and beyond that to the unity and sovereignty of Africa.</p>
+
+                          <p>The Telegraph is renowned for the analysis, perspective, opinion and insight that our journalism provides to a diverse and discerning audience. We will at all times uphold the need for justice, probity in public life, equal access to the nation's resources, and equal protection under the laws of Nigeria for all citizens.</p>
+                          {% endblock content %}
+                            <div class="after-article js-after-article"></div>                          
+                        </div>
+                    </div>
+
+                    <div class="content__secondary-column js-secondary-column" aria-hidden="true">
+                        <!-- <div class="ad-slot-container" aria-hidden="true" style="height: 897px;">
+                            <div id="dfp-ad--right" class="js-ad-slot ad-slot ad-slot--right ad-slot--mpu-banner-ad js-sticky-mpu ad-slot--rendered" data-link-name="ad slot right" data-name="right" data-mobile="1,1|2,2|300,250|300,274|300,600|fluid" aria-hidden="true" style="width: 300px; height: 250px;" data-google-query-id=""><div class="ad-slot__label">Advertisement</div><div id="" class="ad-slot__content" style="border: 0pt none; width: 300px; height: 250px;"><iframe id="" title="3rd party ad content" name="" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom; width: 300px; height: 250px;" data-integralas-id-f5a1099b-c9d4-5041-cf42-6b7da7d3b77b="" data-integralas-id-4578cd84-cbb0-926a-826e-c1175fbe85fc="" src="{% static 'img/telegraph-tutor.gif' %}"></iframe></div></div>
+                            <span class="bt-uid-tg" uid="" style="display: none !important"></span>
+                        </div> -->
+
+                        <div class="js-components-container">
+                            <div class="js-right-most-popular right-most-popular right-most-popular--image component--rhc hide-on-childrens-books-site" data-component="geo-most-popular" data-importance="-1" data-test-id="right-most-popular">
+                                <h3 class="content__meta-heading right-most-popular__heading">You may also like </h3>
+                                <ul class="right-most-popular__items u-unstyled" data-link-name="Right hand most popular geo NG">
+                                    {% for obj in opinion_list|slice:':5' %} 
+                                    <li class="right-most-popular-item" data-link-name="trail | 2">
+                                        <a class="right-most-popular-item__url media u-cf" href="{{obj.get_absolute_url}}">
+                                            <div class="right-most-popular-item__img media__img">
+                                                <img class="responsiveimg" src="{{obj.get_image_url}}" alt="">
+                                            </div>
+                                            <div class="media__body right-most-popular__content">
+                                                <h4 class="right-most-popular-item__headline">
+                                                    <span class="right-most-popular__kicker">{{obj.caption}}</span>
+                                                    {{obj.title}}
+                                                </h4>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- <div class="ad-slot-container" aria-hidden="true" style="height: 897px;">
+                            <div id="dfp-ad--right" class="js-ad-slot ad-slot ad-slot--right ad-slot--mpu-banner-ad js-sticky-mpu ad-slot--rendered" data-link-name="ad slot right" data-name="right" data-mobile="1,1|2,2|300,250|300,274|300,600|fluid" aria-hidden="true" style="width: 300px; height: 250px;" data-google-query-id=""><div class="ad-slot__label">Advertisement</div><div id="" class="ad-slot__content" style="border: 0pt none; width: 300px; height: 250px;"><iframe id="" title="3rd party ad content" name="" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom; width: 300px; height: 250px;" data-integralas-id-f5a1099b-c9d4-5041-cf42-6b7da7d3b77b="" data-integralas-id-4578cd84-cbb0-926a-826e-c1175fbe85fc="" src="{% static 'img/telegraph-tutor.gif' %}"></iframe></div></div>
+                            <span class="bt-uid-tg" uid="" style="display: none !important"></span>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </article>
+        <div class="content-footer content-footer--pillar-sport">
+
+            <!-- mobile advertisement -->
+            <section class="fc-container__mpu--mobile text-center">
+              <span class="bt-uid-tg  hide-from-tablet" uid="5a98585772-157" >
+                <a href="http://www.nakasoft.com.ng/" target="blank">
+                  <img src="{% static '/img/telegraph-tutor.gif' %}" alt="Ad.">
+                </a> 
+              </span>
+            </section>
+
+            <div class="fc-container fc-container--outbrain hide-on-childrens-books-site js-outbrain">
+                <div class="fc-container__inner js-outbrain-container"></div>
+            </div>
+            <aside id="onward" class="onward js-onward facia-container facia-container--layout-content  js-outbrain-anchor" role="complementary"></aside>
+            <aside id="more-in-section" class="more-in-section js-more-in-section facia-container facia-container--layout-content " role="complementary"></aside>
+
+        </div>
+    </div>
+
+    
+    {% include 'footer.html' %}
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static '/js/jquery-3.2.1.slim.min.js' %}" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="{% static '/js/jquery-slim.min.js' %}"><\/script>')</script>
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script> 
+
+</body>
+</html>
+
+
+

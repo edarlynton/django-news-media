@@ -1,0 +1,43 @@
+{% extends 'others/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+
+     {% block head_title %} Advertising on the Telegraph or Observer {% endblock %}
+     {% block caption %} Advert {% endblock %}     
+     {% block title %} Advertising on the Telegraph {% endblock %}
+      {% block image %} 
+        <figure itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject" data-component="image" class="media-primary media-content ()" data-media-id="" id="img-1">
+            <meta itemprop="representativeOfPage" content="true">
+            <a href="{{request.build_absolute_uri}}#img-1" class="article__img-container js-gallerythumbs" data-link-name="Launch Article Lightbox" data-is-ajax="">
+                <div class="u-responsive-ratio" style="padding-bottom: 60.01%">
+                    <picture>
+                        <img class="maxed responsive-img" itemprop="contentUrl" alt="About us" src="{% static 'img/tgh_w.png' %}">
+                    </picture>
+                </div>
+            </a>
+            <input type="checkbox" id="show-caption" class="mobile-only u-h reveal-caption__checkbox">
+            <label class="mobile-only reveal-caption reveal-caption--img" for="show-caption">
+                <span class="inline-information inline-icon reveal-caption-icon centered-icon">
+                <svg width="6" height="14" viewBox="0 0 6 14" class="reveal-caption-icon__svg centered-icon__svg inline-information__svg inline-icon__svg">
+                <path d="M4.6 12l-.4 1.4c-.7.2-1.9.6-3 .6-.7 0-1.2-.2-1.2-.9 0-.2 0-.3.1-.5l2-6.7H.7l.4-1.5 4.2-.6h.2L3 12h1.6zm-.3-9.2c-.9 0-1.4-.5-1.4-1.3C2.9.5 3.7 0 4.6 0 5.4 0 6 .5 6 1.3c0 1-.8 1.5-1.7 1.5z"></path>
+                </svg>
+                </span>
+            </label>
+        </figure>
+     {% endblock %}
+
+     {% block content %}
+
+        <p>The Telegraph Nigeria is a premium online newspaper exclusively for local and international breaking news, politics, business, sports and more, that has been synonymous with quality, authority and credibility for the purpose of presenting balanced coverage, and of promoting the best interests of the society.</p>
+
+        <p>We can help bring your campaigns to life and reach the right audience with some of the most innovative and creative advertising solutions. To find everything you need to know about advertising with The Telegraph, please contact our sales team.</p> 
+
+        <p>
+          Call: <a href="tel:+2348098677126" data-link-name="in body link" class="u-underline">0809 867 7126</a> or dialling from overseas <a href="tel:+2348098677126" data-link-name="in body link" class="u-underline">+234 809 867 7126</a> <br>
+          Email:  <a href="mailto:sales@telegraph.ng" data-link-name="in body link" class="u-underline">sales@telegraph.ng</a>
+        </p>          
+        {% endblock content %}
+                         
